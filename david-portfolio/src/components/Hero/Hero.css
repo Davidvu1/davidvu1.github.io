@@ -1,0 +1,80 @@
+.my-profile-img{
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+
+}
+.hero {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.hero img{
+    margin-top: 60px;
+}
+
+.hero h1 {
+    text-align: center;
+    width: 70%;
+    font-size:45px;
+    font-weight: 600;
+}
+
+.hero h1 span{
+
+    background: linear-gradient(270deg,  #4693f8 0.36%, #fdb45b 102.96% );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero h1 .cs-text{
+
+    background: linear-gradient(230deg,  #fdb45b 0.36%, #4693f8 102.96% );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+
+.hero p{
+
+    width: 50%;
+    text-align: center;
+    font-size: 24px;
+    line-height: 40px;
+
+}
+
+.hero-action{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+
+.hero-connect{
+    padding: 25px 45px;
+    border-radius: 50px;
+    background: linear-gradient(264deg,  #4693f8 0.36%, #fdb45b 102.96% );
+    cursor: pointer;
+}
+
+.hero-resume{
+    padding: 25px 75px;
+    border-radius: 50px;
+    border: 2px solid #FFF;
+    cursor: pointer;
+}
+
+.hero-connect:hover{
+    border: 2px solid white;
+}
+
+.hero-resume:hover{
+    border-color: #fdb45b;
+}
