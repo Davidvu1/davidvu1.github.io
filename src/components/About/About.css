@@ -137,8 +137,51 @@
 }
 
 .tweet-container {
-    display: inline-block;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 100% !important;
     overflow: hidden;
-    width: fit-content;
-    height: fit-content;
+}
+
+/* Specific styling for tweet in image carousel */
+.image-carousel-item-description .tweet-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 auto !important;
+}
+
+.image-carousel-item-description {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+/* Override ImageCarousel alignment for tweet items */
+.image-carousel-item:has(.tweet-container) {
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.image-carousel-item-content:has(.tweet-container) {
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Alternative approach - target all image carousel items with tweets */
+.image-carousel-item {
+    align-items: center !important;
+}
+
+.image-carousel-item .image-carousel-item-content {
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
 }

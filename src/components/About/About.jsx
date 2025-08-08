@@ -4,23 +4,30 @@ import Carousel from "../Carousel/Carousel"
 import ImageCarousel from "../ImageCarousel/ImageCarousel"
 import profile_img from '../../assets/profile_img.png'
 import { Tweet } from 'react-tweet';
-import { FiCode, Fi1Circle, Fi2Circle } from 'react-icons/fi';
 import tournaments from '../../assets/sometournaments.png'
 const esportsCarouselItems = [
     {
         title: "Team Canada Trial",
         description: (
-            <div data-theme="dark" className="tweet-container">
+            <div 
+                data-theme="dark" 
+                className="tweet-container" 
+                style={{ 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    alignItems: 'center', 
+                    width: '100%',
+                    height: '100%'
+                }}
+            >
                 <Tweet id="1646327357291266051" />
             </div>
         ),
-        icon: <FiCircle className="carousel-icon" />,
         id: 1,
     },
     {
-        title: "Tournament Results", 
+        title: "Some Tournament Results", 
         description: <img src={tournaments} alt="Tournaments" style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }} />,
-        icon:<FiCircle className="carousel-icon" />,
         id: 2,
     }
 ];

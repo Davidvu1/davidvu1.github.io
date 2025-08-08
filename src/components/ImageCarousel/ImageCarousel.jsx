@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { FiCircle, FiCode, FiFileText, FiLayers, FiLayout } from "react-icons/fi";
 
 import "./ImageCarousel.css";
 
@@ -8,13 +7,11 @@ const DEFAULT_ITEMS = [
 	{
 		title: "Default Item 1",
 		description: "Default description",
-		icon: <FiCode className="image-carousel-icon" />,
 		id: 1,
 	},
 	{
 		title: "Default Item 2",
 		description: "Default description",
-		icon: <FiLayers className="image-carousel-icon" />,
 		id: 2,
 	},
 ];

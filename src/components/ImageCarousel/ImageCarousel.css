@@ -78,10 +78,19 @@
   display: flex;
   height: 28px;
   width: 28px;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   border-radius: 50%;
   background-color: #fff;
+}
+
+/* Hide icon container when empty */
+.image-carousel-icon-container:empty {
+  display: none;
+}
+
+.image-carousel-item-header:has(.image-carousel-icon-container:empty) {
+  display: none;
 }
 
 .image-carousel-icon {
