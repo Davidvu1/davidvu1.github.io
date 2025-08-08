@@ -1,5 +1,78 @@
+/* Carousel dots at the bottom of the carousel */
+.carousel-dots-wrapper-static {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  pointer-events: none;
+}
 
+.carousel-dot {
+  background: #fff;
+  opacity: 0.7;
+  pointer-events: auto;
+}
 
+/* Use your site's blue color for the active dot */
+.carousel-dot-active {
+  background: #4693f8; /* Replace with your site's blue if different */
+  opacity: 1;
+}
+/* Layout: image left, carousel right */
+.about-sections {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.about-profile-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Lock carousel size for pleasing view */
+.fixed-carousel-size {
+  width: 700px;
+  min-height: auto;
+  max-width: 90vw;
+  background: #2c2f39;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 1.5rem 1.5rem 2.5rem 1.5rem;
+  box-sizing: border-box;
+}
+/* Center the main content vertically and horizontally */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-profile-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.about-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .profile-img{
     width: 400px;
     height: auto;
@@ -26,16 +99,6 @@
     font-weight: 600;
 }
 
-.about-sections{
-    display: flex;
-    gap: 80px;
-}
-
-.about-right{
-    display: flex;
-    flex-direction: column;
-    gap: 80px
-}
 
 .about-para{
     display: flex;
@@ -56,9 +119,26 @@
     align-items: center;
     transition: 0.3s;
 }
-.about-skill p{
-    min-width: 150px;
-    font-size: 24px;
-    font-weight: 500;
+.about-bullets {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+.about-bullets li {
+    margin-bottom: 2.5rem;
+}
+.about-bullets,
+.about-carousel-wrapper p {
+  font-size: 1.3rem; /* or whatever size you want */
 }
 
+.react-tweet-theme {
+    zoom: 0.5 !important;
+    /* zoom affects both visual and layout dimensions */
+}
+
+.tweet-container {
+    display: inline-block;
+    overflow: hidden;
+    width: fit-content;
+    height: fit-content;
+}
