@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
+    "react-feather": "^2.0.10",
+    "react-tweet": "^3.2.2",
+    "react-twitter-embed": "^4.0.4",
+    "tailwindcss": "^4.1.11"
+  }
+}
