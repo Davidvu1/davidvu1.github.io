@@ -136,7 +136,7 @@
     /* zoom affects both visual and layout dimensions */
 }
 
-.tweet-container {
+.carousel-item-container {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -145,8 +145,8 @@
     overflow: hidden;
 }
 
-/* Specific styling for tweet in image carousel */
-.image-carousel-item-description .tweet-container {
+/* Specific styling for carousel items in image carousel */
+.image-carousel-item-description .carousel-item-container {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -162,13 +162,13 @@
     width: 100% !important;
 }
 
-/* Override ImageCarousel alignment for tweet items */
-.image-carousel-item:has(.tweet-container) {
+/* Override ImageCarousel alignment for carousel items */
+.image-carousel-item:has(.carousel-item-container) {
     align-items: center !important;
     justify-content: center !important;
 }
 
-.image-carousel-item-content:has(.tweet-container) {
+.image-carousel-item-content:has(.carousel-item-container) {
     align-items: center !important;
     justify-content: center !important;
     width: 100% !important;
@@ -184,4 +184,16 @@
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
+}
+
+/* Tournament image centering container */
+.tournament-image-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 250px !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
 }

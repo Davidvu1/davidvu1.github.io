@@ -2,16 +2,22 @@ import React, { useState } from 'react'
 import './About.css'
 import Carousel from "../Carousel/Carousel"
 import ImageCarousel from "../ImageCarousel/ImageCarousel"
-import profile_img from '../../assets/profile_img.png'
+import Masonry from '../Masonry/Masonry'
+import profile_img from '../../assets/me_in_dist.png'
 import { Tweet } from 'react-tweet';
 import tournaments from '../../assets/sometournaments.png'
+import uoft_mr_ban from '../../assets/uoftavengersbanner.png'
+import uoft_ow_ban from '../../assets/uoftoverwatchbanner.png'
+import ow_din from '../../assets/owteamdinner2024.png'
+import mr_lan from '../../assets/mrlan2025.png'
+
 const esportsCarouselItems = [
     {
         title: "Team Canada Trial",
         description: (
             <div 
                 data-theme="dark" 
-                className="tweet-container" 
+                className="carousel-item-container" 
                 style={{ 
                     display: 'flex', 
                     justifyContent: 'center', 
@@ -27,8 +33,58 @@ const esportsCarouselItems = [
     },
     {
         title: "Some Tournament Results", 
-        description: <img src={tournaments} alt="Tournaments" style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }} />,
+        description: (
+            <div 
+                className="carousel-item-container"
+                style={{ 
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    alignItems: 'center', 
+                    width: '100%',
+                    height: '100%'
+                }}
+            >
+                <img 
+                    src={tournaments} 
+                    alt="Tournaments" 
+                    style={{ 
+                        maxWidth: '100%', 
+                        maxHeight: '100%',
+                        height: 'auto', 
+                        borderRadius: '8px',
+                        objectFit: 'contain'
+                    }} 
+                />
+            </div>
+        ),
         id: 2,
+    }
+];
+
+const masonryItems = [
+    {
+      id: "1",
+      img: uoft_ow_ban,
+      url: "https://example.com/one",
+      height: 600,
+    },
+    {
+      id: "2",
+      img: uoft_mr_ban,
+      url: "https://example.com/two",
+      height: 600,
+    },
+    {
+      id: "3",
+      img: ow_din,
+      url: "https://example.com/three",
+      height: 350,
+    },
+    {
+      id: "4",
+      img: mr_lan,
+      url: "https://example.com/four",
+      height: 350,
     }
 ];
 
@@ -39,7 +95,7 @@ const aboutSlides = [
                 <li>Currently a 2nd year student at the University of Toronto
                      seeking a Winter 2026 Co-op and other Co-op opportunities.
                 </li>
-                <li>Interested in Software Development and dabbling in tech</li>
+                <li>Interested in Software Development and learning other tech fields.</li>
                 <li>Outside of tech, I am passionate about niche interests like 
                     competing in esports (I also coached people to get better and got 
                     paid for it!) and rating food places to eat at; I also love playing 
@@ -72,11 +128,22 @@ const aboutSlides = [
     {
         content: (
             <div>
-                <p>I love exploring Toronto's food scene and sharing my favorite spots with friends.</p>
+                <p>Nowadays, I just play for the collegiate Overwatch and Marvel Rivals teams at UofT!</p>
+                <div style={{ 
+                    marginTop: '12px', 
+                    display: 'flex', 
+                    justifyContent: 'center'
+                }}>
+                    <Masonry    
+                        items={masonryItems}
+                    />
+                </div>
             </div>
         )
     }
 ];
+
+
 
 const About = () => {
 
@@ -98,7 +165,7 @@ const About = () => {
                             ))}
                         </Carousel>
                     </div>
-                    <p>Here are the languages I have experience in:</p>
+                    <p>wassup gang</p>
                 </div>
             </div>
         </div>
