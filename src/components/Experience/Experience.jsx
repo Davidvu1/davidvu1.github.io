@@ -1,7 +1,7 @@
 import React from 'react'
 import './Experience.css'
 import Experience_Data from '../../assets/experience_data'
-import arrow_icon from '../../assets/arrow_icon.svg'
+import ProfileCard from '../ProfileCard/ProfileCard'
 
 const Experience = () => {
   return (
@@ -11,14 +11,19 @@ const Experience = () => {
         </div>
         <div className="experience-container">
             {Experience_Data.map((experience,index)=> {
-                return <div key={index} className ='experience-format'>
-                    <h2>{experience.e_name}</h2>
-                    <p>{experience.e_desc}</p>
-                    <div className="experience-readmore">
-                        <p>Read More</p>
-                        <img src={arrow_icon} alt="" />
-                    </div>
-                </div>
+                return <ProfileCard
+                    key={index}
+                    name={experience.e_name}
+                    title={experience.e_desc}
+                    handle={`experience-${index}`}
+                    status="Available"
+                    contactText="Learn More"
+                    avatarUrl={experience.e_image}
+                    showUserInfo={true}
+                    enableTilt={true}
+                    enableMobileTilt={false}
+                    onContactClick={() => console.log(`Contact clicked for ${experience.e_name}`)}
+                />
             })}
         </div>
     </div>
