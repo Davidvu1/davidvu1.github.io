@@ -95,11 +95,12 @@ const aboutSlides = [
                 <li>Currently a 2nd year student at the University of Toronto
                      seeking a Winter 2026 Co-op and other Co-op opportunities.
                 </li>
-                <li>Interested in Software Development and learning other tech fields.</li>
+                <li>Interested in Frontend, Backend, and overall Software Development while learning other tech fields.</li>
                 <li>Outside of tech, I am passionate about niche interests like 
                     competing in esports (I also coached people to get better and got 
-                    paid for it!) and rating food places to eat at; I also love playing 
-                    sports like volleyball.</li>
+                    paid for it!) and rating food places to eat.</li>
+                <li>I also like physical activities like volleyball since I used to play on volleyball teams or just simply hitting the gym.</li>
+                
                 <li>For those who are interested in my life outside tech,
                      click the arrows to learn more!</li>
             </ul>

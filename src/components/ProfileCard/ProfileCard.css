@@ -186,8 +186,8 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%) scale(1);
-  bottom: 2px;
-  opacity: calc(1.75 - var(--pointer-from-center));
+  bottom: calc(20px + 12px + 48px + 12px + 20px);
+  opacity: 1;
 }
 
 .pc-avatar-content::before {
