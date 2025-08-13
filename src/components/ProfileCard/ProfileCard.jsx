@@ -309,9 +309,24 @@ const ProfileCardComponent = ({
                 src={avatarUrl}
                 alt={`${name || "User"} avatar`}
                 loading="lazy"
+                style={{
+                  objectFit: "contain",
+                  objectPosition: "center",
+                  backgroundColor: "transparent"
+                }}
                 onError={(e) => {
+                  console.log(`Main avatar failed to load: ${avatarUrl}`);
                   const target = e.target;
-                  target.style.display = "none";
+                  // Try to reload once
+                  if (!target.dataset.retried) {
+                    target.dataset.retried = "true";
+                    target.src = avatarUrl + "?retry=" + Date.now();
+                  } else {
+                    target.style.display = "none";
+                  }
+                }}
+                onLoad={(e) => {
+                  console.log(`Main avatar loaded successfully: ${avatarUrl}`);
                 }}
               />
               {showUserInfo && (
