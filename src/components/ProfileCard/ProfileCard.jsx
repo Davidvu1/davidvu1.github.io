@@ -60,12 +60,32 @@ const ProfileCardComponent = ({
   
   // State for card flip
   const [isFlipped, setIsFlipped] = useState(false);
+  
+  // State for image loading
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   // Handle card flip when contact button is clicked
   const handleContactClick = useCallback(() => {
     setIsFlipped(prev => !prev);
     onContactClick?.();
   }, [onContactClick]);
+
+  // Preload image when component mounts
+  useEffect(() => {
+    if (avatarUrl && avatarUrl !== "<Placeholder for avatar URL>") {
+      const img = new Image();
+      img.onload = () => {
+        setImageLoaded(true);
+        setImageError(false);
+      };
+      img.onerror = () => {
+        setImageError(true);
+        setImageLoaded(false);
+      };
+      img.src = avatarUrl;
+    }
+  }, [avatarUrl]);
 
   const animationHandlers = useMemo(() => {
     if (!enableTilt) return null;
@@ -304,29 +324,54 @@ const ProfileCardComponent = ({
             <div className="pc-shine" />
             <div className="pc-glare" />
             <div className="pc-content pc-avatar-content">
+              {!imageLoaded && !imageError && (
+                <div className="avatar-placeholder" style={{
+                  position: "absolute",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  bottom: "clamp(90px, 15vh + 2rem, 120px)",
+                  width: "clamp(60%, 80vw, 85%)",
+                  maxWidth: "400px",
+                  height: "200px",
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  borderRadius: "8px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "rgba(255, 255, 255, 0.5)",
+                  fontSize: "14px"
+                }}>
+                  Loading...
+                </div>
+              )}
               <img
                 className="avatar"
                 src={avatarUrl}
                 alt={`${name || "User"} avatar`}
-                loading="lazy"
+                loading="eager"
                 style={{
                   objectFit: "contain",
                   objectPosition: "center",
-                  backgroundColor: "transparent"
+                  backgroundColor: "transparent",
+                  display: imageLoaded ? "block" : "none"
                 }}
                 onError={(e) => {
                   console.log(`Main avatar failed to load: ${avatarUrl}`);
+                  setImageError(true);
+                  setImageLoaded(false);
                   const target = e.target;
                   // Try to reload once
                   if (!target.dataset.retried) {
                     target.dataset.retried = "true";
-                    target.src = avatarUrl + "?retry=" + Date.now();
-                  } else {
-                    target.style.display = "none";
+                    setTimeout(() => {
+                      target.src = avatarUrl + "?retry=" + Date.now();
+                    }, 1000);
                   }
                 }}
                 onLoad={(e) => {
                   console.log(`Main avatar loaded successfully: ${avatarUrl}`);
+                  setImageLoaded(true);
+                  setImageError(false);
                 }}
               />
               {showUserInfo && (
