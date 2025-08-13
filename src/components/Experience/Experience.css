@@ -69,3 +69,55 @@
 }
 */
 
+/* Responsive Design for Experience Component */
+@media (max-width: 768px) {
+  .experience {
+    margin: 40px 20px;
+    gap: 40px;
+  }
+  
+  .experience-title h1 {
+    font-size: 60px;
+    padding: 0px 20px;
+  }
+  
+  .experience-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience {
+    margin: 20px 15px;
+    gap: 30px;
+  }
+  
+  .experience-title h1 {
+    font-size: 48px;
+    padding: 0px 15px;
+  }
+  
+  .experience-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 320px) {
+  .experience {
+    margin: 15px 10px;
+    gap: 25px;
+  }
+  
+  .experience-title h1 {
+    font-size: 36px;
+    padding: 0px 10px;
+  }
+  
+  .experience-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+

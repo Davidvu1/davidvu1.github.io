@@ -61,7 +61,7 @@
 }
 
 .pc-card {
-  height: 80svh;
+  height: clamp(320px, 50vh + 10rem, 540px);
   max-height: 540px;
   display: grid;
   aspect-ratio: 0.718;
@@ -76,6 +76,61 @@
   background-position: 0 0, 0 0, 50% 50%, 0 0;
   background-image: radial-gradient(farthest-side circle at var(--pointer-x) var(--pointer-y), hsla(210, 94%, 70%, var(--card-opacity)) 4%, hsla(210, 94%, 65%, calc(var(--card-opacity) * 0.75)) 10%, hsla(210, 94%, 60%, calc(var(--card-opacity) * 0.5)) 50%, hsla(210, 94%, 55%, 0) 100%), radial-gradient(35% 52% at 55% 20%, #4693f8c4 0%, #4693f800 100%), radial-gradient(100% 100% at 50% 50%, #fdb45bff 1%, #4693f800 76%), conic-gradient(from 124deg at 50% 50%, #4693f8ff 0%, #fdb45bff 40%, #fdb45bff 60%, #4693f8ff 100%);
   overflow: hidden;
+  /* Card flip styles */
+  transform-style: preserve-3d;
+}
+
+.pc-card.is-flipped {
+  transform: translate3d(0, 0, 0.1px) rotateY(180deg);
+}
+
+.pc-card__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.pc-card__face--front {
+  /* Front face inherits the original card styles */
+  z-index: 2;
+}
+
+.pc-card__face--back {
+  transform: rotateY(180deg);
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1;
+}
+
+.pc-back-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 40px;
+  text-align: center;
+  color: white;
+}
+
+.pc-back-content h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  background-image: linear-gradient(to bottom, #fff, #6f6fbe);
+  background-size: 1em 1.5em;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.pc-back-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .pc-card:hover,
@@ -84,7 +139,12 @@
   transform: translate3d(0, 0, 0.1px) rotateX(var(--rotate-y)) rotateY(var(--rotate-x));
 }
 
-.pc-card * {
+.pc-card.is-flipped:hover,
+.pc-card.is-flipped.active {
+  transform: translate3d(0, 0, 0.1px) rotateX(var(--rotate-y)) rotateY(calc(180deg + var(--rotate-x)));
+}
+
+.pc-card > *:not(.pc-avatar-content) {
   display: grid;
   grid-area: 1/-1;
   border-radius: var(--card-radius);
@@ -179,14 +239,18 @@
 .pc-avatar-content {
   mix-blend-mode: screen;
   overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .pc-avatar-content .avatar {
-  width: 100%;
+  width: clamp(60%, 80vw, 85%);
+  max-width: 400px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%) scale(1);
-  bottom: calc(20px + 12px + 48px + 12px + 20px);
+  bottom: clamp(80px, 15vh + 2rem, 120px);
   opacity: 1;
 }
 
@@ -290,42 +354,47 @@
   position: relative;
   transform: translate3d(calc(var(--pointer-from-left) * -6px + 3px), calc(var(--pointer-from-top) * -6px + 3px), 0.1px) !important;
   z-index: 5;
-  mix-blend-mode: luminosity;
+  mix-blend-mode: difference;
 }
 
 .pc-details {
   width: 100%;
   position: absolute;
-  top: 3em;
+  transform: none;
+  top: 6%;
   display: flex;
+  text-align: center;
   flex-direction: column;
+  z-index: 10;
+  pointer-events: none;
+  /* Separate from pc-content blend mode */
 }
 
 .pc-details h3 {
   font-weight: 600;
+  font-size: clamp(1.8rem, 4vw + 1rem, 3rem);
+  line-height: 1.2;
   margin: 0;
-  font-size: min(5svh, 3em);
-  margin: 0;
-  background-image: linear-gradient(to bottom, #fff, #6f6fbe);
-  background-size: 1em 1.5em;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
+  color: white;
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.6),
+    0 0 15px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(70, 147, 248, 0.3);
+  /* Remove gradient background to avoid blend mode conflicts */
 }
 
 .pc-details p {
   font-weight: 600;
   position: relative;
-  top: -12px;
+  top: 0px;
   white-space: nowrap;
   font-size: 16px;
   margin: 0 auto;
   width: min-content;
-  background-image: linear-gradient(to bottom, #fff, #4a4ac0);
-  background-size: 1em 1.5em;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
+  color: rgba(255, 255, 255, 0.9);
+
+  /* Remove gradient background to avoid blend mode conflicts */
 }
 
 @keyframes glow-bg {
@@ -350,7 +419,7 @@
 
 @media (max-width: 768px) {
   .pc-card {
-    height: 70svh;
+    height: clamp(300px, 45vh + 8rem, 450px);
     max-height: 450px;
   }
 
@@ -359,7 +428,8 @@
   }
 
   .pc-details h3 {
-    font-size: min(4svh, 2.5em);
+    font-size: clamp(1.6rem, 3.5vw + 0.8rem, 2.5rem);
+    line-height: 1.1;
   }
 
   .pc-details p {
@@ -394,98 +464,121 @@
     padding: 6px 12px;
     font-size: 11px;
   }
+
+  .pc-avatar-content .avatar {
+    width: clamp(65%, 75vw, 80%);
+    bottom: clamp(90px, 12vh + 1.5rem, 120px);
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+  }
 }
 
 @media (max-width: 480px) {
   .pc-card {
-    height: 60svh;
-    max-height: 380px;
+    height: clamp(450px, 60vh + 8rem, 600px);
+    max-height: 600px;
   }
 
   .pc-details {
-    top: 1.5em;
+    top: 8%;
   }
 
   .pc-details h3 {
-    font-size: min(3.5svh, 2em);
+    font-size: clamp(2rem, 5vw + 1rem, 3rem);
+    line-height: 1.1;
   }
 
   .pc-details p {
-    font-size: 12px;
+    font-size: 18px;
     top: -8px;
   }
 
   .pc-user-info {
-    bottom: 12px;
-    left: 12px;
-    right: 12px;
-    padding: 8px 10px;
-    border-radius: 50px;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    padding: 15px 18px;
+    border-radius: 15px;
   }
 
   .pc-mini-avatar {
-    width: 24px;
-    height: 24px;
+    width: 45px;
+    height: 45px;
   }
 
   .pc-user-details {
-    gap: 8px;
+    gap: 12px;
   }
 
   .pc-handle {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .pc-status {
-    font-size: 9px;
+    font-size: 14px;
   }
 
   .pc-contact-btn {
-    padding: 5px 10px;
-    font-size: 10px;
-    border-radius: 50px;
+    padding: 10px 18px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  .pc-avatar-content .avatar {
+    width: clamp(70%, 70vw, 75%);
+    bottom: clamp(90px, 10vh + 1rem, 110px);
+    left: 50%;
+    transform: translateX(-50%) scale(1);
   }
 }
 
 @media (max-width: 320px) {
   .pc-card {
-    height: 55svh;
-    max-height: 320px;
+    height: clamp(380px, 55vh + 6rem, 500px);
+    max-height: 500px;
   }
 
   .pc-details h3 {
-    font-size: min(3svh, 1.5em);
+    font-size: clamp(1.6rem, 4vw + 0.8rem, 2.2rem);
+    line-height: 1.1;
   }
 
   .pc-details p {
-    font-size: 11px;
+    font-size: 16px;
   }
 
   .pc-user-info {
-    padding: 6px 8px;
-    border-radius: 50px;
+    padding: 12px 15px;
+    border-radius: 15px;
   }
 
   .pc-mini-avatar {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
   }
 
   .pc-user-details {
-    gap: 6px;
+    gap: 10px;
   }
 
   .pc-handle {
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .pc-status {
-    font-size: 8px;
+    font-size: 13px;
   }
 
   .pc-contact-btn {
-    padding: 4px 8px;
-    font-size: 9px;
-    border-radius: 50px;
+    padding: 8px 15px;
+    font-size: 13px;
+    border-radius: 10px;
+  }
+
+  .pc-avatar-content .avatar {
+    width: clamp(75%, 65vw, 80%);
+    bottom: clamp(85px, 8vh + 1rem, 100px);
+    left: 50%;
+    transform: translateX(-50%) scale(1);
   }
 }

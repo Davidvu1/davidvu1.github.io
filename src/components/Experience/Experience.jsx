@@ -15,9 +15,9 @@ const Experience = () => {
                     key={index}
                     name={experience.e_name}
                     title={experience.e_desc}
-                    handle={`experience-${index}`}
-                    status="Available"
-                    contactText="Learn More"
+                    handle={experience.e_place}
+                    status={experience.e_date}
+                    contactText="Details"
                     avatarUrl={experience.e_image}
                     showUserInfo={true}
                     enableTilt={true}

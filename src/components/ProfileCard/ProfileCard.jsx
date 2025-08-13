@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback, useMemo } from "react";
+import React, { useEffect, useRef, useCallback, useMemo, useState } from "react";
 import "./ProfileCard.css";
 
 const DEFAULT_BEHIND_GRADIENT =
@@ -52,9 +52,20 @@ const ProfileCardComponent = ({
   contactText = "goat",
   showUserInfo = true,
   onContactClick,
+  // New props for card flip
+  backContent,
 }) => {
   const wrapRef = useRef(null);
   const cardRef = useRef(null);
+  
+  // State for card flip
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  // Handle card flip when contact button is clicked
+  const handleContactClick = useCallback(() => {
+    setIsFlipped(prev => !prev);
+    onContactClick?.();
+  }, [onContactClick]);
 
   const animationHandlers = useMemo(() => {
     if (!enableTilt) return null;
@@ -280,67 +291,90 @@ const ProfileCardComponent = ({
     [iconUrl, grainUrl, showBehindGradient, behindGradient, innerGradient]
   );
 
-  const handleContactClick = useCallback(() => {
-    onContactClick?.();
-  }, [onContactClick]);
-
   return (
     <div
       ref={wrapRef}
       className={`pc-card-wrapper ${className}`.trim()}
       style={cardStyle}
     >
-      <section ref={cardRef} className="pc-card">
-        <div className="pc-inside">
-          <div className="pc-shine" />
-          <div className="pc-glare" />
-          <div className="pc-content pc-avatar-content">
-            <img
-              className="avatar"
-              src={avatarUrl}
-              alt={`${name || "User"} avatar`}
-              loading="lazy"
-              onError={(e) => {
-                const target = e.target;
-                target.style.display = "none";
-              }}
-            />
-            {showUserInfo && (
-              <div className="pc-user-info">
-                <div className="pc-user-details">
-                  <div className="pc-mini-avatar">
-                    <img
-                      src={miniAvatarUrl || avatarUrl}
-                      alt={`${name || "User"} mini avatar`}
-                      loading="lazy"
-                      onError={(e) => {
-                        const target = e.target;
-                        target.style.opacity = "0.5";
-                        target.src = avatarUrl;
-                      }}
-                    />
+      <section ref={cardRef} className={`pc-card ${isFlipped ? 'is-flipped' : ''}`}>
+        {/* Front side of the card */}
+        <div className="pc-card__face pc-card__face--front">
+          <div className="pc-inside">
+            <div className="pc-shine" />
+            <div className="pc-glare" />
+            <div className="pc-content pc-avatar-content">
+              <img
+                className="avatar"
+                src={avatarUrl}
+                alt={`${name || "User"} avatar`}
+                loading="lazy"
+                onError={(e) => {
+                  const target = e.target;
+                  target.style.display = "none";
+                }}
+              />
+              {showUserInfo && (
+                <div className="pc-user-info">
+                  <div className="pc-user-details">
+                    <div className="pc-mini-avatar">
+                      <img
+                        src={miniAvatarUrl || avatarUrl}
+                        alt={`${name || "User"} mini avatar`}
+                        loading="lazy"
+                        onError={(e) => {
+                          const target = e.target;
+                          target.style.opacity = "0.5";
+                          target.src = avatarUrl;
+                        }}
+                      />
+                    </div>
+                    <div className="pc-user-text">
+                      <div className="pc-handle">{handle}</div>
+                      <div className="pc-status">{status}</div>
+                    </div>
                   </div>
-                  <div className="pc-user-text">
-                    <div className="pc-handle">@{handle}</div>
-                    <div className="pc-status">{status}</div>
-                  </div>
+                  <button
+                    className="pc-contact-btn"
+                    onClick={handleContactClick}
+                    style={{ pointerEvents: "auto" }}
+                    type="button"
+                    aria-label={`Contact ${name || "user"}`}
+                  >
+                    {contactText}
+                  </button>
                 </div>
-                <button
-                  className="pc-contact-btn"
-                  onClick={handleContactClick}
-                  style={{ pointerEvents: "auto" }}
-                  type="button"
-                  aria-label={`Contact ${name || "user"}`}
-                >
-                  {contactText}
-                </button>
-              </div>
-            )}
-          </div>
-          <div className="pc-content">
+              )}
+            </div>
+            {/* Move pc-details outside pc-content to avoid blend mode */}
             <div className="pc-details">
               <h3>{name}</h3>
               <p>{title}</p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Back side of the card */}
+        <div className="pc-card__face pc-card__face--back">
+          <div className="pc-inside">
+            <div className="pc-shine" />
+            <div className="pc-glare" />
+            <div className="pc-content">
+              {backContent || (
+                <div className="pc-back-content">
+                  <h2>More About {name}</h2>
+                  <p>Additional information and details about {name} would appear here.</p>
+                  <button
+                    className="pc-contact-btn"
+                    onClick={handleContactClick}
+                    style={{ pointerEvents: "auto" }}
+                    type="button"
+                    aria-label="Go back to front"
+                  >
+                    Back
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
