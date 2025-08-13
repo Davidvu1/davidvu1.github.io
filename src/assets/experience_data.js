@@ -1,4 +1,4 @@
-import sendoFarmLogo from "../assets/sendoFarmLogo.png"
+import sendoFarmLogo from "../assets/sendo_farm_logo.png"
 
 
 const Experience_Data = [

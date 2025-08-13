@@ -9,21 +9,8 @@
   --rotate-y: 0deg;
   --background-x: 50%;
   --background-y: 50%;
-  --grain: none.pc-avatar-content .avatar {
-  width: clamp(60%, 80vw, 85%);
-  max-width: 400px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) scale(1);
-  bottom: clamp(80px, 15vh + 2rem, 120px);
-  opacity: 1;
-  object-fit: contain;
-  object-position: center;
-  /* Improve mobile image rendering */
-  image-rendering: auto;
-  -webkit-image-rendering: auto;
-  will-change: auto;
-}n: none;
+  --grain: none;
+  --icon: none;
   --behind-gradient: none;
   --inner-gradient: none;
   --sunpillar-1: #4693f8;
@@ -272,6 +259,12 @@
   transform: translateX(-50%) scale(1);
   bottom: clamp(90px, 15vh + 2rem, 120px);
   opacity: 1;
+  object-fit: contain;
+  object-position: center;
+  /* Improve mobile image rendering */
+  image-rendering: auto;
+  -webkit-image-rendering: auto;
+  will-change: auto;
 }
 
 .pc-avatar-content::before {
