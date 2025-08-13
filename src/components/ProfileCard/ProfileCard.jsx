@@ -41,7 +41,7 @@ const ProfileCardComponent = ({
   innerGradient,
   showBehindGradient = true,
   className = "",
-  enableTilt = true,
+  enableTilt = false,
   enableMobileTilt = false,
   mobileTiltSensitivity = 5,
   miniAvatarUrl,

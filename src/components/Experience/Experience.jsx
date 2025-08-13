@@ -20,7 +20,7 @@ const Experience = () => {
                     contactText="Details"
                     avatarUrl={experience.e_image}
                     showUserInfo={true}
-                    enableTilt={true}
+                    enableTilt={false}
                     enableMobileTilt={false}
                     onContactClick={() => console.log(`Contact clicked for ${experience.e_name}`)}
                 />
