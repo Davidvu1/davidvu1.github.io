@@ -39,3 +39,14 @@
     transition: 0.4s;
     cursor: pointer;
 }
+
+@media(max-width: 430px)
+{
+
+    .project-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    }
+
+}

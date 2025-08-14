@@ -9,13 +9,13 @@ const Project_Data = [
         p_no: 1,
         p_name: "TripQuick",
         p_img: p1_img,
-        p_desc: "this did trip shit"
+        p_desc: "A hackathon project that is an AI trip recommender to make booking vacations easier"
     },
     {
         p_no: 2,
         p_name: "FoodIt",
         p_img: p2_img,
-        p_desc: "this will do food shit"
+        p_desc: "working on this"
     }
 
 

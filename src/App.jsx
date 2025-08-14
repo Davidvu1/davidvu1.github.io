@@ -8,11 +8,19 @@ import Projects from './components/Projects/Projects'
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <Hero/>
-      <About/>
-      <Experience/>
-      <Projects/>
+        <Navbar />
+        <section id="hero">
+          <Hero/>
+        </section>
+        <section id="about">
+          <About/>
+        </section>
+        <section id="experience">
+          <Experience/>
+        </section>
+        <section id="projects">
+          <Projects/>
+        </section>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 .my-profile-img{
+    margin-top: 60px;
     width: 220px;
     height: 220px;
     object-fit: cover;
@@ -10,10 +11,6 @@
     align-items: center;
     flex-direction: column;
     gap: 35px;
-}
-
-.hero img{
-    margin-top: 60px;
 }
 
 .hero h1 {
@@ -55,13 +52,33 @@
     font-size: 24px;
     font-weight: 500;
     margin-bottom: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .hero-connect{
-    padding: 25px 45px;
-    border-radius: 50px;
-    background: linear-gradient(264deg,  #4693f8 0.36%, #fdb45b 102.96% );
+    padding: 0;
+    border-radius:50%;
+    background: #4693f8; 
     cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    box-sizing: border-box;
+    border: 2px solid #161513;
+    transition: all 0.3s ease;
+    /* Add subtle shadow for depth */
+    box-shadow: 0 2px 8px rgba(70, 147, 248, 0.2);
+}
+
+.social-icon {
+    width: 53%;
+    height: auto;
+    display: block;
+    filter: brightness(0) invert(1);
 }
 
 .hero-resume{
@@ -69,12 +86,77 @@
     border-radius: 50px;
     border: 2px solid #FFF;
     cursor: pointer;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero-connect:hover{
-    border: 2px solid white;
+
+.linkedin-btn:hover {
+    background: radial-gradient(circle at 30% 30%, #0077b5 0%, #0077B5 70%);
+    border-color: white;
+    box-shadow: 0 4px 12px #fdb45b;
 }
 
+.github-btn:hover {
+    background: radial-gradient(circle at 30% 30%, #333 0%, #24292e 70%);
+    border-color: white;
+    box-shadow: 0 4px 12px #fdb45b;
+}
+
+
+.email-btn:hover {
+    background: white;
+    border-color: white;
+    box-shadow: 0 4px 12px #fdb45b;
+
+}
+
+.email-btn:hover .social-icon {
+    filter: brightness(1) invert(0);
+}
 .hero-resume:hover{
     border-color: #fdb45b;
+    box-shadow: 0 4px 12px #fdb45b;
+    transform: translateY(-2px);
+}
+
+
+
+.hero-connect:hover{
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    .hero-action {
+        gap: 20px;
+    }
+    
+    .hero-connect {
+        width: 55px;
+        height: 55px;
+        padding: 0;
+    }
+    
+    .social-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .email-btn .social-icon {
+        font-size: 24px;
+    }
+    
+    .hero-resume {
+        padding: 20px 35px;
+        font-size: 20px;
+        min-width: 200px;
+        text-align: center;
+    }
 }
