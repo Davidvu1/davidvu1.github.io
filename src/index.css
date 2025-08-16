@@ -16,7 +16,7 @@ section {
 }
 
 body {
-
+  padding-top: 120px;
   height: 100vh;
   background: #161513;
   color: white;

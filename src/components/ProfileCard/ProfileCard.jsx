@@ -52,14 +52,15 @@ const ProfileCardComponent = ({
   contactText = "goat",
   showUserInfo = true,
   onContactClick,
-  // New props for card flip
   backContent,
+  backTitle,
 }) => {
   const wrapRef = useRef(null);
   const cardRef = useRef(null);
   
   // State for card flip
   const [isFlipped, setIsFlipped] = useState(false);
+  const [showBackContent, setShowBackContent] = useState(false);
   
   // State for image loading
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -67,9 +68,21 @@ const ProfileCardComponent = ({
 
   // Handle card flip when contact button is clicked
   const handleContactClick = useCallback(() => {
-    setIsFlipped(prev => !prev);
+    if (!isFlipped) {
+      // Flipping to back: start rotation, delay content switch
+      setIsFlipped(true);
+      setTimeout(() => {
+        setShowBackContent(true);
+      }, 500); // Switch content halfway through 1s animation
+    } else {
+      // Flipping to front: start rotation, delay content switch
+      setIsFlipped(false);
+      setTimeout(() => {
+        setShowBackContent(false);
+      }, 500); // Hide back content halfway through flip back
+    }
     onContactClick?.();
-  }, [onContactClick]);
+  }, [isFlipped, onContactClick]);
 
   // Preload image when component mounts
   useEffect(() => {
@@ -320,7 +333,7 @@ const ProfileCardComponent = ({
       <section ref={cardRef} className={`pc-card ${isFlipped ? 'is-flipped' : ''}`}>
         {/* Front side of the card */}
         <div className="pc-card__face pc-card__face--front">
-          <div className="pc-inside">
+          <div className="pc-inside" style={{ opacity: showBackContent ? 0 : 1, transition: 'opacity 0.3s ease' }}>
             <div className="pc-shine" />
             <div className="pc-glare" />
             <div className="pc-content pc-avatar-content">
@@ -416,25 +429,31 @@ const ProfileCardComponent = ({
         
         {/* Back side of the card */}
         <div className="pc-card__face pc-card__face--back">
-          <div className="pc-inside">
-            <div className="pc-shine" />
-            <div className="pc-glare" />
-            <div className="pc-content">
-              {backContent || (
-                <div className="pc-back-content">
-                  <h2>More About {name}</h2>
-                  <p>Additional information and details about {name} would appear here.</p>
-                  <button
-                    className="pc-contact-btn"
-                    onClick={handleContactClick}
-                    style={{ pointerEvents: "auto" }}
-                    type="button"
-                    aria-label="Go back to front"
-                  >
-                    Back
-                  </button>
+          <div className="pc-inside pc-back-inside" style={{ opacity: showBackContent ? 1 : 0, transition: 'opacity 0.3s ease' }}>
+            <div className="pc-content pc-back-content">
+              <div className="pc-default-back-content">
+                <h2>{backTitle || `About ${name}`}</h2>
+                <div className="pc-back-info">
+                  {backContent ? (
+                    <div dangerouslySetInnerHTML={{ __html: backContent }} />
+                  ) : (
+                    <>
+                      <p>Still looking for a job....</p>
+                      <p>I hope I get an internship soon...</p>
+                      <p>Maybe one day...</p>
+                    </>
+                  )}
                 </div>
-              )}
+                <button
+                  className="pc-back-btn"
+                  onClick={handleContactClick}
+                  style={{ pointerEvents: "auto" }}
+                  type="button"
+                  aria-label="Go back to front"
+                >
+                  ← Back
+                </button>
+              </div>
             </div>
           </div>
         </div>

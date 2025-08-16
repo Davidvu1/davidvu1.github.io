@@ -105,43 +105,155 @@
   z-index: 2;
 }
 
+/* When card is flipped, hide front content completely */
+.pc-card.is-flipped .pc-card__face--front {
+  visibility: hidden;
+  opacity: 0;
+  z-index: 0;
+}
+
+/* When card is flipped, ensure back is visible */
+.pc-card.is-flipped .pc-card__face--back {
+  visibility: visible;
+  opacity: 1;
+  z-index: 10;
+}
+
 .pc-card__face--back {
   transform: rotateY(180deg);
-  background-color: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(135deg, #4693f8 0%, #fdb45b 100%);
   z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Back side specific styling */
+.pc-back-inside {
+  padding: 0;
+  background: #4693f8; /* Solid fallback */
+  background: linear-gradient(135deg, #4693f8 0%, #fdb45b 100%);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--card-radius);
 }
 
 .pc-back-content {
+  /* Remove any blend modes or transparency */
+  mix-blend-mode: normal;
+  background: #4693f8; /* Solid fallback */
+  background: linear-gradient(135deg, #4693f8 0%, #fdb45b 100%);
+  padding: 40px;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  padding: 40px;
+  position: relative;
+  z-index: 10;
+  border-radius: var(--card-radius);
+  box-sizing: border-box;
+}
+
+.pc-default-back-content {
   text-align: center;
   color: white;
+  max-width: 350px;
+  /* Counter-rotate the text to make it readable when card is flipped */
+  transform: rotateY(180deg);
 }
 
-.pc-back-content h2 {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  background-image: linear-gradient(to bottom, #fff, #6f6fbe);
-  background-size: 1em 1.5em;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
+.pc-default-back-content h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.pc-back-content p {
-  font-size: 16px;
+.pc-back-info {
+  margin-bottom: 2rem;
   line-height: 1.6;
-  margin-bottom: 30px;
-  color: rgba(255, 255, 255, 0.8);
 }
 
-.pc-card:hover,
-.pc-card.active {
+.pc-back-info p {
+  margin-bottom: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.pc-back-info ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  list-style-type: disc;
+}
+
+.pc-back-info li {
+  margin-bottom: 0.8rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  line-height: 1.5;
+}
+
+.pc-back-btn {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.pc-back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Remove old back content styles - they're replaced above */
+
+/* Mobile responsive adjustments for back content */
+@media (max-width: 768px) {
+  .pc-back-inside {
+    padding: 20px;
+  }
+  
+  .pc-default-back-content {
+    max-width: 280px;
+  }
+  
+  .pc-default-back-content h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .pc-back-info p {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .pc-back-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+.pc-card:hover:not(.is-flipped),
+.pc-card.active:not(.is-flipped) {
   transition: none;
   transform: translate3d(0, 0, 0.1px) rotateX(var(--rotate-y)) rotateY(var(--rotate-x));
 }

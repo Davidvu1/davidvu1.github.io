@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div>
         <Navbar />
-        <section id="hero">
+        <section id="home">
           <Hero/>
         </section>
         <section id="about">

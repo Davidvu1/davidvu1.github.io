@@ -23,6 +23,8 @@ const Experience = () => {
                     enableTilt={false}
                     enableMobileTilt={false}
                     onContactClick={() => console.log(`Contact clicked for ${experience.e_name}`)}
+                    backContent={experience.e_back_content}
+                    backTitle={experience.e_back_title}
                 />
             })}
         </div>

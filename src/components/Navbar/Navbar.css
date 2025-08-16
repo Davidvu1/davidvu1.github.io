@@ -1,0 +1,27 @@
+.nav-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background:  linear-gradient(190deg,  #4693f8 0.36%, #fdb45b 102.96% );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  height: 100px;
+  display: flex;
+  align-items: center;
+  
+  /* Single transition for smooth hide/show animation */
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+}
+/* Hidden state - slides up out of view */
+.nav-header.nav-hidden {
+  transform: translateY(-100%);
+}
+
+/* Visible state - slides down into view */
+.nav-header.nav-visible {
+  transform: translateY(0);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
