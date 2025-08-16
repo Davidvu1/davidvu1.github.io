@@ -277,6 +277,7 @@
   background-image: var(--inner-gradient);
   background-color: rgba(0, 0, 0, 0.9);
   transform: translate3d(0, 0, 0.01px);
+  border-radius: calc(var(--card-radius) - 1px);
 }
 
 .pc-shine {
