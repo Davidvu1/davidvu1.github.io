@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useCallback, useMemo, useState } from "react"
 import "./ProfileCard.css";
 
 const DEFAULT_BEHIND_GRADIENT =
-  "radial-gradient(farthest-side circle at var(--pointer-x) var(--pointer-y),hsla(210,94%,70%,var(--card-opacity)) 4%,hsla(210,94%,65%,calc(var(--card-opacity)*0.75)) 10%,hsla(210,94%,60%,calc(var(--card-opacity)*0.5)) 50%,hsla(210,94%,55%,0) 100%),radial-gradient(35% 52% at 55% 20%,#4693f8c4 0%,#4693f800 100%),radial-gradient(100% 100% at 50% 50%,#fdb45bff 1%,#4693f800 76%),conic-gradient(from 124deg at 50% 50%,#4693f8ff 0%,#fdb45bff 40%,#fdb45bff 60%,#4693f8ff 100%)";
+  "radial-gradient(farthest-side circle at var(--pointer-x) var(--pointer-y),hsla(210,94%,70%,var(--card-opacity)) 4%,hsla(210,94%,65%,calc(var(--card-opacity)*0.75)) 10%,hsla(210,94%,60%,calc(var(--card-opacity)*0.5)) 50%,hsla(210,94%,55%,0) 100%),radial-gradient(35% 52% at 55% 20%,#b1b4fe 0%,#b1b4fe00 100%),radial-gradient(100% 100% at 50% 50%,#31f2f5 1%,#31f2f500 76%),conic-gradient(from 124deg at 50% 50%,#b1b4fe 0%,#31f2f5 40%,#31f2f5 60%,#b1b4fe 100%)";
 
 const DEFAULT_INNER_GRADIENT =
-  "linear-gradient(145deg,#4693f88c 0%,#fdb45b44 100%)";
+  "linear-gradient(145deg,#b1b4fe8c 30%,#31f2f544 100%)";
 
 const ANIMATION_CONFIG = {
   SMOOTH_DURATION: 600,

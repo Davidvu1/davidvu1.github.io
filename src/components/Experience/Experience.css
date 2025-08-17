@@ -1,11 +1,24 @@
 .experience{
 
     display: flex;
+    background: linear-gradient(180deg, #25274D 0%, #654a6b 50%, #25274D 100%);
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 80px;
-    margin: 80px 170px;
+    margin: 80px 0;
+    padding: 0 170px;
+}
+
+/* Full screen height on non-mobile devices */
+@media (min-width: 768px) {
+    .experience {
+        min-height: 100vh;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0;
+        padding: 0 170px;
+    }
 }
 
 .experience-title{
@@ -16,6 +29,10 @@
     padding: 0px 30px;
     font-size: 80px;
     font-weight: 600;
+    background: linear-gradient(145deg, #31f2f5, #b1b4fe);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .experience-format{
@@ -72,7 +89,8 @@
 /* Responsive Design for Experience Component */
 @media (max-width: 768px) {
   .experience {
-    margin: 40px 20px;
+    margin: 40px 0;
+    padding: 0 20px;
     gap: 40px;
   }
   

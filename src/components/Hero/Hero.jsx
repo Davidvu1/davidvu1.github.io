@@ -6,6 +6,12 @@ import github from '../../assets/Orion_github.svg'
 import email from '../../assets/envelope.svg'
 
 const Hero = () => {
+  const scrollToContact = () => {
+    document.getElementById('contact').scrollIntoView({ 
+      behavior: 'smooth' 
+    });
+  };
+
   return (
     <div className = 'hero'>
         <img src={profile_img} alt="" className="my-profile-img"/>
@@ -17,10 +23,9 @@ const Hero = () => {
         <a href="https://github.com/Davidvu1" target="_blank" rel="noopener noreferrer" className="hero-connect social-btn github-btn">
           <img src={github} alt="GitHub" className="social-icon" />
         </a>
-        <a href="scroll" className="hero-connect social-btn email-btn">
-          {/* Add email icon here later */}
+        <button onClick={scrollToContact} className="hero-connect social-btn email-btn">
           <img src={email} alt="Email" className="social-icon"/>
-        </a>
+        </button>
         <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="hero-resume">
           <span>My resume</span>
         </a>

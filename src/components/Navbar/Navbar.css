@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background:  linear-gradient(190deg,  #4693f8 0.36%, #fdb45b 102.96% );
+  background:  linear-gradient(120deg,  #464866 50%, #464866 102.96% );
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   height: 100px;

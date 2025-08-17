@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
 import { gsap } from "gsap";
 import "./PillNav.css";
 
-const PillNav = ({
+const PillNav = forwardRef(({
   logo,
   logoAlt = "Logo",
   items,
@@ -15,7 +15,7 @@ const PillNav = ({
   pillTextColor,
   onMobileMenuClick,
   initialLoadAnimation = false,
-}) => {
+}, ref) => {
   const resolvedPillTextColor = pillTextColor ?? baseColor;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const circleRefs = useRef([]);
@@ -27,6 +27,40 @@ const PillNav = ({
   const mobileMenuRef = useRef(null);
   const navItemsRef = useRef(null);
   const logoRef = useRef(null);
+
+  // Expose closeMobileMenu function to parent component
+  useImperativeHandle(ref, () => ({
+    closeMobileMenu: () => {
+      if (!isMobileMenuOpen) return; // Already closed
+      
+      setIsMobileMenuOpen(false);
+
+      const hamburger = hamburgerRef.current;
+      const menu = mobileMenuRef.current;
+
+      // Reset hamburger to regular lines
+      if (hamburger) {
+        const lines = hamburger.querySelectorAll(".hamburger-line");
+        gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease });
+        gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3, ease });
+      }
+
+      // Hide menu
+      if (menu) {
+        gsap.to(menu, {
+          opacity: 0,
+          y: 10,
+          scaleY: 1,
+          duration: 0.2,
+          ease,
+          transformOrigin: "top center",
+          onComplete: () => {
+            gsap.set(menu, { visibility: "hidden" });
+          },
+        });
+      }
+    }
+  }), [isMobileMenuOpen, ease]);
 
   useEffect(() => {
     const layout = () => {
@@ -101,7 +135,7 @@ const PillNav = ({
     }
 
     const menu = mobileMenuRef.current;
-    if (menu) {
+    if (menu && !isMobileMenuOpen) {
       gsap.set(menu, { visibility: "hidden", opacity: 0, scaleY: 1 });
     }
 
@@ -227,6 +261,38 @@ const PillNav = ({
 
   const isRouterLink = (href) => href && !isExternalLink(href);
 
+  // Local function to close mobile menu (for internal use)
+  const handleMobileMenuClose = () => {
+    if (!isMobileMenuOpen) return; // Already closed
+    
+    setIsMobileMenuOpen(false);
+
+    const hamburger = hamburgerRef.current;
+    const menu = mobileMenuRef.current;
+
+    // Reset hamburger to regular lines
+    if (hamburger) {
+      const lines = hamburger.querySelectorAll(".hamburger-line");
+      gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease });
+      gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3, ease });
+    }
+
+    // Hide menu
+    if (menu) {
+      gsap.to(menu, {
+        opacity: 0,
+        y: 10,
+        scaleY: 1,
+        duration: 0.2,
+        ease,
+        transformOrigin: "top center",
+        onComplete: () => {
+          gsap.set(menu, { visibility: "hidden" });
+        },
+      });
+    }
+  };
+
   const cssVars = {
     ["--base"]: baseColor,
     ["--pill-bg"]: pillColor,
@@ -347,7 +413,7 @@ const PillNav = ({
                 <Link
                   to={item.href}
                   className={`mobile-menu-link${activeHref === item.href ? " is-active" : ""}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={handleMobileMenuClose}
                 >
                   {item.label}
                 </Link>
@@ -355,7 +421,7 @@ const PillNav = ({
                 <a
                   href={item.href}
                   className={`mobile-menu-link${activeHref === item.href ? " is-active" : ""}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={handleMobileMenuClose}
                 >
                   {item.label}
                 </a>
@@ -366,6 +432,6 @@ const PillNav = ({
       </div>
     </div>
   );
-};
+});
 
 export default PillNav;

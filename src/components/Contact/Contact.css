@@ -1,0 +1,138 @@
+.contact {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(180deg, #25274D 0%, #16213e 37%);
+  color: white;
+}
+
+.contact h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 3rem;
+  text-align: center;
+  background: linear-gradient(135deg, #31f2f5, #b1b4fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 600px;
+  width: 100%;
+}
+
+.email-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.email-section:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #31f2f5;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(49, 242, 245, 0.2);
+}
+
+.email-icon {
+  width: 48px;
+  height: 48px;
+  filter: brightness(0) saturate(100%) invert(100%);
+  transition: all 0.3s ease;
+}
+
+.email-section:hover .email-icon {
+  filter: brightness(0) saturate(100%) invert(69%) sepia(65%) saturate(6066%) hue-rotate(166deg) brightness(97%) contrast(97%);
+}
+
+.email-info {
+  text-align: center;
+  flex: 1;
+}
+
+.email-info h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #31f2f5;
+}
+
+.email-info p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  word-break: break-all;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .contact {
+    padding: 1.5rem;
+  }
+
+  .contact h1 {
+    margin-bottom: 2rem;
+  }
+
+  .contact-content {
+    gap: 2rem;
+  }
+
+  .email-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .email-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .email-info h3 {
+    font-size: 1.2rem;
+  }
+
+  .email-info p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    padding: 1rem;
+  }
+
+  .email-section {
+    padding: 1.2rem;
+  }
+
+  .email-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .email-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .email-info p {
+    font-size: 0.95rem;
+  }
+}
