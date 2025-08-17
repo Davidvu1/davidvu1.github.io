@@ -10,14 +10,49 @@
     padding: 0 170px;
 }
 
-/* Full screen height on non-mobile devices */
-@media (min-width: 768px) {
+/* Medium laptop gapscreens - keep column layout but full height */
+@media (min-width: 768px) and (max-width: 1124px) {
+    .experience {
+        min-height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+        padding: 0 60px;
+        gap: 30px;
+    }
+    
+    .experience-title h1 {
+        font-size: clamp(52px, 5vw + 1.5rem, 68px);
+    }
+}
+
+/* Large laptops */
+@media (min-width: 1024px) and (max-width: 1366px) {
+    .experience {
+        min-height: 100vh;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0;
+        padding: 0 120px;
+    }
+    
+    .experience-title h1 {
+        font-size: clamp(58px, 5.5vw + 1.8rem, 72px);
+    }
+}
+
+/* Extra large screens */
+@media (min-width: 1367px) {
     .experience {
         min-height: 100vh;
         flex-direction: row;
         justify-content: center;
         margin: 0;
         padding: 0 170px;
+    }
+    
+    .experience-title h1 {
+        font-size: clamp(64px, 6vw + 2rem, 80px);
     }
 }
 
@@ -27,7 +62,7 @@
 
 .experience-title h1{
     padding: 0px 30px;
-    font-size: 80px;
+    font-size: clamp(48px, 6vw + 2rem, 80px);
     font-weight: 600;
     background: linear-gradient(145deg, #31f2f5, #b1b4fe);
     -webkit-background-clip: text;
@@ -95,7 +130,7 @@
   }
   
   .experience-title h1 {
-    font-size: 60px;
+    font-size: clamp(42px, 7vw + 1rem, 60px);
     padding: 0px 20px;
   }
   
@@ -112,7 +147,7 @@
   }
   
   .experience-title h1 {
-    font-size: 48px;
+    font-size: clamp(36px, 8vw + 0.8rem, 48px);
     padding: 0px 15px;
   }
   
@@ -129,7 +164,7 @@
   }
   
   .experience-title h1 {
-    font-size: 36px;
+    font-size: clamp(28px, 9vw + 0.5rem, 36px);
     padding: 0px 10px;
   }
   

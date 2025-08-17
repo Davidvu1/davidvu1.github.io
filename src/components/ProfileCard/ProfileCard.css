@@ -69,7 +69,7 @@
 
 .pc-card {
   height: clamp(400px, 60vh + 12rem, 680px);
-  max-height: 680px;
+  max-height: 600px;
   display: grid;
   aspect-ratio: 0.718;
   border-radius: var(--card-radius);
@@ -541,10 +541,35 @@
   }
 }
 
+/* Laptop/Desktop responsive adjustments */
+@media (min-width: 769px) and (max-width: 1440px) {
+  .pc-card {
+    height: clamp(520px, 36vh + 6rem, 580px);
+    max-height: 580px;
+  }
+  
+  .pc-details h3 {
+    font-size: clamp(1.4rem, 2.5vw + 1rem, 2.2rem);
+  }
+  
+  .pc-avatar-content .avatar {
+    width: clamp(55%, 65vw, 70%);
+    bottom: clamp(80px, 12vh + 1rem, 100px);
+  }
+}
+
+/* Large desktop screens */
+@media (min-width: 1441px) {
+  .pc-card {
+    height: clamp(420px, 40vh + 8rem, 550px);
+    max-height: 550px;
+  }
+}
+
 @media (max-width: 768px) {
   .pc-card {
-    height: clamp(380px, 55vh + 10rem, 550px);
-    max-height: 550px;
+    height: clamp(320px, 50vh + 8rem, 450px);
+    max-height: 450px;
   }
 
   .pc-details {
