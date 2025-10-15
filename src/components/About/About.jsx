@@ -166,7 +166,6 @@ const About = () => {
                             ))}
                         </Carousel>
                     </div>
-                    <p>wassup gang</p>
                 </div>
             </div>
         </div>
