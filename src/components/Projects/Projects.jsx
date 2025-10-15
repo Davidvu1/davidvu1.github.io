@@ -10,9 +10,24 @@ const Projects = () => {
         </div>
         <div className="project-container">
             {Project_Data.map((project,index)=>{
-                return <div key={index} className ='project-format'>
-                    <h2>{project.p_name}</h2>
-                    <p>{project.p_desc}</p>
+                return <div key={index} className='project-format'>
+                    <div className="project-text">
+                        <h2>{project.p_name}</h2>
+                        <p>{project.p_desc}</p>
+                        {project.tech_stack && project.tech_stack.length > 0 && (
+                            <div className="tech-stack">
+                                {project.tech_stack.map((tech, techIndex) => (
+                                    <img 
+                                        key={techIndex} 
+                                        src={tech.icon} 
+                                        alt={tech.name}
+                                        title={tech.name}
+                                        className="tech-icon"
+                                    />
+                                ))}
+                            </div>
+                        )}
+                    </div>
                     <div className="project-image">
                         <img src={project.p_img} alt="" />
                     </div>
