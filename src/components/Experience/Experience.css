@@ -13,7 +13,7 @@
 /* Medium laptop gapscreens - keep column layout but full height */
 @media (min-width: 768px) and (max-width: 1124px) {
     .experience {
-        min-height: 100vh;
+        min-height: 110vh;
         flex-direction: column;
         justify-content: center;
         margin: 0;
@@ -33,7 +33,7 @@
         flex-direction: row;
         justify-content: center;
         margin: 0;
-        padding: 0 120px;
+        padding: 0 140px;
     }
     
     .experience-title h1 {
@@ -84,7 +84,8 @@
 .experience-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 60px;
+    margin-top: 70px;
     margin-bottom: 40px;
 
 }

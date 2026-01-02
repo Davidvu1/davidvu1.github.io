@@ -1,5 +1,6 @@
 import sendoFarmLogo from "../assets/sendo_farm_logo.png"
-
+import cibcLogo from "../assets/cibcLogo.png"
+import ibmLogo from "../assets/ibmLogo.png"
 
 const Experience_Data = [
 
@@ -26,6 +27,28 @@ const Experience_Data = [
         </ul>
     `,
     e_image: sendoFarmLogo
+},
+
+{
+    e_name: "CIBC",
+    e_desc: "Software Developer Intern",
+    e_date: "January 2026 - April 2026",
+    e_place: "Toronto, Canada",
+    e_back_title: "Incoming Winter 2026",
+    e_back_content: `
+    `,
+    e_image: cibcLogo
+},
+
+{
+    e_name: "IBM",
+    e_desc: "Software Developer Intern",
+    e_date: "May 2026 - May 2027",
+    e_place: "Markham, Canada",
+    e_back_title: "Incoming Summer 2026",
+    e_back_content: `
+    `,
+    e_image: ibmLogo
 },
 
 ]
