@@ -6,6 +6,7 @@ import Experience from './components/Experience/Experience'
 import Projects from './components/Projects/Projects'
 import Aurora from './components/Aurora/Aurora'
 import Contact from './components/Contact/Contact'
+import Test from './components/Test/Test'
 
 const App = () => {
   return (
@@ -33,6 +34,9 @@ const App = () => {
       </section>
             <section id="contact">
         <Contact/>
+      </section>
+      <section>
+        <Test/>
       </section>
     </div>
   )
