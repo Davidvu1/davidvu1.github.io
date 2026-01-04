@@ -1,5 +1,5 @@
 import './Test.css';
-import zenyattaSprite from '../../assets/zenyatta sprite sheet.png';
+import zenyattaSprite from '../../assets/zenyatta sprite sheet2.png';
 
 export default function Test() {
 
