@@ -6,6 +6,7 @@ import Experience from './components/Experience/Experience'
 import Projects from './components/Projects/Projects'
 import Aurora from './components/Aurora/Aurora'
 import Contact from './components/Contact/Contact'
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
             <section id="contact">
         <Contact/>
       </section>
+      <SpeedInsights />
     </div>
   )
 }
