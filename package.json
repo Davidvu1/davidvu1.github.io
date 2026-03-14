@@ -1,6 +1,5 @@
 {
   "name": "david-portfolio",
-  "homepage": "https://davidvu.ca",
   "private": true,
   "version": "0.0.0",
   "type": "module",
