@@ -3,7 +3,7 @@ import p2_img from "../assets/foodit.png"
 import typescript_icon from './TypeScript.svg'
 import python_icon from './Python.svg'
 import javascript_icon from './JavaScript.svg'
-import react_icon from './React.svg'
+import react_icon from './react.svg'
 import swift_icon from './Swift.svg'
 import spring_icon from './Spring.svg'
 import django_icon from './Django.svg'
