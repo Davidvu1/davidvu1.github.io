@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
 import Experience from './components/Experience/Experience'
@@ -30,7 +31,6 @@ const MainPage = () => (
     <Footer />
   </>
 )
-import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const App = () => {
   return (
@@ -41,24 +41,8 @@ const App = () => {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
       </Routes>
-    </>
-      <section id="home">
-        <Hero/>
-      </section>
-      <section id="about">
-        <About/>
-      </section>
-      <section id="experience">
-        <Experience/>
-      </section>
-      <section id="projects">
-        <Projects/>
-      </section>
-            <section id="contact">
-        <Contact/>
-      </section>
       <SpeedInsights />
-    </div>
+    </>
   )
 }
 
