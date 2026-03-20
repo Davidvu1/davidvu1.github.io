@@ -28,6 +28,13 @@ const Experience = () => {
                 <h3 className="timeline-role">{exp.e_desc}</h3>
                 <div className="timeline-company">{exp.e_name}</div>
                 <div className="timeline-location">{exp.e_place}</div>
+                {exp.e_bullets && exp.e_bullets.length > 0 && (
+                  <ul className="timeline-bullets">
+                    {exp.e_bullets.map((bullet, i) => (
+                      <li key={i}>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
 
               <div className="timeline-marker">

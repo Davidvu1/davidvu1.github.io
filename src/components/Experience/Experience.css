@@ -120,6 +120,46 @@
   opacity: 0.8;
 }
 
+.timeline-bullets {
+  margin-top: 12px;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: disc;
+}
+
+.timeline-bullets li {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: 14px;
+  color: #c3c6d3;
+  line-height: 1.5;
+}
+
+.timeline-bullets li::marker {
+  color: #90b8f8;
+}
+
+/* Right-align bullet list for left entries */
+.timeline-entry--left .timeline-bullets {
+  padding-left: 0;
+  padding-right: 16px;
+  list-style: none;
+}
+
+.timeline-entry--left .timeline-bullets li {
+  position: relative;
+  padding-right: 16px;
+}
+
+.timeline-entry--left .timeline-bullets li::after {
+  content: '•';
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #90b8f8;
+}
+
 /* Circular marker on center line */
 .timeline-marker {
   position: absolute;
@@ -209,6 +249,21 @@
     width: 40px;
     height: 40px;
     border-width: 2px;
+  }
+
+  /* Reset left-entry bullets to standard left-aligned disc */
+  .timeline-entry--left .timeline-bullets {
+    padding-left: 16px;
+    padding-right: 0;
+    list-style: disc;
+  }
+
+  .timeline-entry--left .timeline-bullets li {
+    padding-right: 0;
+  }
+
+  .timeline-entry--left .timeline-bullets li::after {
+    display: none;
   }
 
   .timeline-date {
