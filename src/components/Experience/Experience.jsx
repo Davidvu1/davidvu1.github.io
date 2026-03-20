@@ -1,34 +1,47 @@
 import React from 'react'
 import './Experience.css'
 import Experience_Data from '../../assets/experience_data'
-import ProfileCard from '../ProfileCard/ProfileCard'
 
 const Experience = () => {
+  // Show real entries only (skip the placeholder "TBD" entry)
+  const entries = Experience_Data.filter(e => e.e_image !== null)
+
   return (
-    <div className='experience'>
-        <div className="experience-title">
-            <h1>Technical Experience</h1>
+    <section className="experience-section">
+      <div className="experience-inner">
+        <div className="experience-header">
+          <h2 className="experience-title">My Work Experience</h2>
+          <div className="experience-accent" />
         </div>
-        <div className="experience-container">
-            {Experience_Data.map((experience,index)=> {
-                return <ProfileCard
-                    key={index}
-                    name={experience.e_name}
-                    title={experience.e_desc}
-                    handle={experience.e_place}
-                    status={experience.e_date}
-                    contactText="Details"
-                    avatarUrl={experience.e_image}
-                    showUserInfo={true}
-                    enableTilt={false}
-                    enableMobileTilt={false}
-                    onContactClick={() => console.log(`Contact clicked for ${experience.e_name}`)}
-                    backContent={experience.e_back_content}
-                    backTitle={experience.e_back_title}
-                />
-            })}
+
+        <div className="experience-timeline">
+          {/* Desktop center line */}
+          <div className="timeline-center-line" />
+
+          {entries.map((exp, index) => (
+            <div
+              key={index}
+              className={`timeline-entry ${index % 2 === 0 ? 'timeline-entry--left' : 'timeline-entry--right'}`}
+            >
+              <div className="timeline-content">
+                <span className="timeline-date">{exp.e_date}</span>
+                <h3 className="timeline-role">{exp.e_desc}</h3>
+                <div className="timeline-company">{exp.e_name}</div>
+                <div className="timeline-location">{exp.e_place}</div>
+              </div>
+
+              <div className="timeline-marker">
+                {exp.e_image ? (
+                  <img src={exp.e_image} alt={exp.e_name} className="timeline-marker-logo" />
+                ) : (
+                  <span className="timeline-marker-initial">{exp.e_name[0]}</span>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
-    </div>
+      </div>
+    </section>
   )
 }
 

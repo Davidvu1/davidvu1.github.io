@@ -1,177 +1,222 @@
-.experience{
-
-    display: flex;
-    background: linear-gradient(180deg, #25274D 0%, #654a6b 50%, #25274D 100%);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 80px;
-    margin: 80px 0;
-    padding: 0 170px;
+.experience-section {
+  background: #26282b;
+  padding: 128px 32px;
 }
 
-/* Medium laptop gapscreens - keep column layout but full height */
-@media (min-width: 768px) and (max-width: 1124px) {
-    .experience {
-        min-height: 110vh;
-        flex-direction: column;
-        justify-content: center;
-        margin: 0;
-        padding: 0 60px;
-        gap: 30px;
-    }
-    
-    .experience-title h1 {
-        font-size: clamp(52px, 5vw + 1.5rem, 68px);
-    }
+.experience-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
 }
 
-/* Large laptops */
-@media (min-width: 1024px) and (max-width: 1366px) {
-    .experience {
-        min-height: 100vh;
-        flex-direction: row;
-        justify-content: center;
-        margin: 0;
-        padding: 0 140px;
-    }
-    
-    .experience-title h1 {
-        font-size: clamp(58px, 5.5vw + 1.8rem, 72px);
-    }
+/* Section header */
+.experience-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
-/* Extra large screens */
-@media (min-width: 1367px) {
-    .experience {
-        min-height: 100vh;
-        flex-direction: row;
-        justify-content: center;
-        margin: 0;
-        padding: 0 170px;
-    }
-    
-    .experience-title h1 {
-        font-size: clamp(64px, 6vw + 2rem, 80px);
-    }
+.experience-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 36px);
+  letter-spacing: -0.9px;
+  color: #e2e2e6;
+  text-align: center;
 }
 
-.experience-title{
-    position: relative;
+.experience-accent {
+  width: 48px;
+  height: 4px;
+  background: #5f85db;
+  border-radius: 2px;
 }
 
-.experience-title h1{
-    padding: 0px 30px;
-    font-size: clamp(48px, 6vw + 2rem, 80px);
-    font-weight: 600;
-    background: linear-gradient(145deg, #31f2f5, #b1b4fe);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* ────────────────────────────────────────────
+   Desktop Timeline
+──────────────────────────────────────────── */
+.experience-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
 }
 
-.experience-format{
-    display:flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 60px;
-    border-radius: 10px;
-    border: 2px solid white;
-    transition: 0.4s;
-    cursor: pointer;
+.timeline-center-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #5f85db;
+  border-radius: 2px;
 }
 
-.experience-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    margin-top: 70px;
-    margin-bottom: 40px;
-
-}
-/*
-.experience-format h2{
-    font-size: 38px;
-    font-weight: 800;
-    background: linear-gradient(270deg,  #4693f8 0.36%, #fdb45b 102.96% );
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* Each timeline entry */
+.timeline-entry {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  min-height: 144px;
 }
 
-.experience-format p{
-    color: #d4d4d4;
-    font-size: 24px;
-    line-height: 40px;
-    max-width: 300px;
-}
-*/
-/*
-.experience-readmore{
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    margin-top: 20px;
+/* Content block */
+.timeline-content {
+  width: calc(50% - 64px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.experience-format:hover{
-    border: 2px solid #4693f8;
-    background-image: linear-gradient(45deg,  #9cc6fc 0.36%, #699be1 102.96% );
-    transform: scale(1.05);
-    transition: 0.4s;
+/* Left entry: content on left, right-aligned */
+.timeline-entry--left .timeline-content {
+  text-align: right;
+  padding-right: 64px;
 }
-*/
 
-/* Responsive Design for Experience Component */
+/* Right entry: content on right, left-aligned */
+.timeline-entry--right .timeline-content {
+  margin-left: calc(50% + 64px);
+  padding-left: 0;
+  text-align: left;
+}
+
+.timeline-date {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #90b8f8;
+  display: block;
+}
+
+.timeline-role {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 24px);
+  color: #e2e2e6;
+  line-height: 1.33;
+}
+
+.timeline-company {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #c3c6d3;
+}
+
+.timeline-location {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #c3c6d3;
+  opacity: 0.8;
+}
+
+/* Circular marker on center line */
+.timeline-marker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 8px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 4px solid #90b8f8;
+  background: #353941;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+}
+
+.timeline-marker-logo {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.timeline-marker-initial {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #90b8f8;
+}
+
+/* ────────────────────────────────────────────
+   Mobile Timeline
+──────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .experience {
-    margin: 40px 0;
-    padding: 0 20px;
-    gap: 40px;
+  .experience-section {
+    padding: 80px 24px;
   }
-  
-  .experience-title h1 {
-    font-size: clamp(42px, 7vw + 1rem, 60px);
-    padding: 0px 20px;
+
+  .experience-inner {
+    gap: 48px;
   }
-  
-  .experience-container {
-    grid-template-columns: 1fr;
-    gap: 30px;
+
+  .experience-timeline {
+    padding-left: 48px;
+    gap: 64px;
+  }
+
+  /* Hide center line, show left line */
+  .timeline-center-line {
+    display: none;
+  }
+
+  .experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #90b8f8;
+    border-radius: 9999px;
+  }
+
+  .timeline-entry {
+    display: block;
+    min-height: unset;
+  }
+
+  /* Both left & right entries: full-width card */
+  .timeline-entry--left .timeline-content,
+  .timeline-entry--right .timeline-content {
+    width: 100%;
+    margin-left: 0;
+    padding: 24px;
+    text-align: left;
+    background: #1a1c1f;
+    border: 1px solid rgba(67, 70, 81, 0.15);
+    border-radius: 12px;
+  }
+
+  .timeline-marker {
+    left: -44px;
+    transform: none;
+    top: 4px;
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+  }
+
+  .timeline-date {
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+
+  .timeline-role {
+    font-size: 20px;
   }
 }
-
-@media (max-width: 480px) {
-  .experience {
-    margin: 20px 15px;
-    gap: 30px;
-  }
-  
-  .experience-title h1 {
-    font-size: clamp(36px, 8vw + 0.8rem, 48px);
-    padding: 0px 15px;
-  }
-  
-  .experience-container {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-}
-
-@media (max-width: 320px) {
-  .experience {
-    margin: 15px 10px;
-    gap: 25px;
-  }
-  
-  .experience-title h1 {
-    font-size: clamp(28px, 9vw + 0.5rem, 36px);
-    padding: 0px 10px;
-  }
-  
-  .experience-container {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-

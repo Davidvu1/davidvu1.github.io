@@ -1,0 +1,38 @@
+.test-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  background-color: #333; 
+}
+
+.zenyatta-window {
+  /* 1. Set the visual size of ONE frame on screen */
+  width: 100px; 
+  /* Calculate height to match aspect ratio (688/685 approx 1:1) */
+  height: 100px; 
+
+  /* 2. Scale the background image */
+  /* Formula: (TargetWidth * FrameCount) auto */
+  /* 50px * 5 frames = 250px */
+  background-size: 500px auto;
+
+  background-repeat: no-repeat;
+  image-rendering: pixelated; 
+
+  /* 3. Animation */
+  /* Match the steps(5) to your frame count */
+  animation: walk-cycle 0.65s steps(5) infinite;
+}
+
+@keyframes walk-cycle {
+  from { 
+    background-position: 0px; 
+  }
+  to { 
+    /* 4. Move left by the NEW background width */
+    /* Must match the background-size width calculated above */
+    background-position: -500px; 
+  }
+}

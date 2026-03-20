@@ -1,0 +1,122 @@
+.post-page {
+  min-height: 100vh;
+  background: #26282b;
+  padding: 120px 32px 100px;
+}
+
+.post-page-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.post-page-back {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5f85db;
+  text-decoration: none;
+  width: fit-content;
+  transition: color 0.2s ease;
+}
+
+.post-page-back:hover {
+  color: #90b8f8;
+}
+
+/* Header */
+.post-page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.post-page-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.post-page-category {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #5f85db;
+  background: rgba(95, 133, 219, 0.12);
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.post-page-date {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.post-page-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -1.5px;
+  color: #e2e2e6;
+  line-height: 1.15;
+}
+
+.post-page-excerpt {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #90b8f8;
+  font-style: italic;
+}
+
+.post-page-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Article body */
+.post-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-page-content p {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #c3c6d3;
+}
+
+.post-page-content h2 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #e2e2e6;
+  letter-spacing: -0.5px;
+  margin-top: 16px;
+}
+
+.post-page-content h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #e2e2e6;
+  letter-spacing: -0.3px;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .post-page {
+    padding: 100px 20px 80px;
+  }
+
+  .post-page-inner {
+    gap: 32px;
+  }
+}
