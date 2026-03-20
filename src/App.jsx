@@ -30,6 +30,7 @@ const MainPage = () => (
     <Footer />
   </>
 )
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const App = () => {
   return (
@@ -41,6 +42,23 @@ const App = () => {
         <Route path="/blog/:slug" element={<BlogPostPage />} />
       </Routes>
     </>
+      <section id="home">
+        <Hero/>
+      </section>
+      <section id="about">
+        <About/>
+      </section>
+      <section id="experience">
+        <Experience/>
+      </section>
+      <section id="projects">
+        <Projects/>
+      </section>
+            <section id="contact">
+        <Contact/>
+      </section>
+      <SpeedInsights />
+    </div>
   )
 }
 

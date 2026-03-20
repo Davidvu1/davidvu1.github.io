@@ -1,6 +1,5 @@
 {
   "name": "david-portfolio",
-  "homepage": "https://davidvu1.github.io/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,11 +8,11 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
+    "@vercel/speed-insights": "^2.0.0",
     "framer-motion": "^12.23.12",
     "gsap": "^3.13.0",
     "ogl": "^1.0.11",
