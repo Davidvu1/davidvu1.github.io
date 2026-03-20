@@ -1,176 +1,153 @@
-.projects {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 80px;
-    margin: 80px 0;
-    padding: 0 170px;
+.projects-section {
+  background: #111416;
+  padding: 128px 32px;
+  overflow: hidden;
 }
 
-/* Full screen height on non-mobile devices */
-@media (min-width: 768px) {
-    .projects {
-        min-height: 100vh;
-        justify-content: center;
-        margin: 0;
-        padding: 0 170px;
-    }
+.projects-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
 }
 
-.projects-title{
-    position: relative;
+/* Section header */
+.projects-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.projects-title h1{
-    padding: 0px 30px;
-    font-size: 80px;
-    font-weight: 600;
+.projects-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: clamp(36px, 4vw, 48px);
+  letter-spacing: -2.4px;
+  color: #e2e2e6;
+  line-height: 1;
 }
 
-.projects img{
-    width: 300px;
-    height: auto;
-
+.projects-subtitle {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #c3c6d3;
+  max-width: 320px;
 }
 
-.project-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+/* ────────────────────────────────────────────
+   Project Grid
+──────────────────────────────────────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 96px 48px;
 }
 
-.project-format {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    align-items: center;
-    justify-content: space-between;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 2px solid white;
-    transition: 0.4s;
-    cursor: pointer;
+.project-card-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.project-text {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.project-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 8px solid rgba(53, 57, 65, 0.1);
+  box-shadow: 0 40px 60px -15px rgba(226, 226, 230, 0.06);
+  transform: rotate(var(--rotation, 0deg));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-.project-text h2 {
-    font-size: clamp(24px, 3vw, 32px);
-    color: #fff;
-    margin: 0;
+.project-card:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 0 40px 60px -15px rgba(95, 133, 219, 0.25);
 }
 
-.project-text p {
-    font-size: clamp(14px, 1.5vw, 16px);
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
-    margin: 0;
+.project-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.project-image {
-    flex: 1;
-    max-width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Hover overlay */
+.project-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(95, 133, 219, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 32px;
 }
 
-.project-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    object-fit: cover;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+.project-card:hover .project-card-overlay {
+  opacity: 1;
 }
 
-/* Mobile responsive */
+.project-overlay-name {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  line-height: 1.33;
+}
+
+.project-overlay-tags {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+/* ────────────────────────────────────────────
+   Responsive
+──────────────────────────────────────────── */
 @media (max-width: 768px) {
-    .projects {
-        margin: 40px 0;
-        padding: 0 20px;
-        gap: 40px;
-    }
-    
-    .project-format {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .project-image {
-        max-width: 100%;
-    }
-}
+  .projects-section {
+    padding: 80px 24px;
+  }
 
-@media(max-width: 430px)
-{
-
-    .project-container{
-    display: grid;
-    grid-template-columns: 1fr;
+  .projects-inner {
     gap: 40px;
-    }
-}
+  }
 
-.tech-stack {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    margin-top: 20px;
-    max-width: 200px;
-}
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
 
-.tech-icon {
-    width: 100%;
-    height: auto;
-    max-width: 60px;
-    max-height: 60px;
-    object-fit: contain;
-    transition: transform 0.3s ease, filter 0.3s ease;
-    filter: grayscale(0);
-    padding: 6px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    backdrop-filter: blur(10px);
-    box-sizing: border-box;
-}
+  .project-card {
+    aspect-ratio: 3 / 4;
+    border-width: 1px;
+  }
 
-.tech-icon:hover {
-    transform: translateY(-2px) scale(1.05);
-    filter: drop-shadow(0 4px 12px rgba(177, 180, 254, 0.5));
-    background: rgba(177, 180, 254, 0.2);
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-    .tech-stack {
-        gap: 6px;
-        margin-top: 15px;
-        max-width: 160px;
-    }
-    
-    .tech-icon {
-        max-width: 32px;
-        max-height: 32px;
-        padding: 4px;
-    }
+  .project-overlay-name {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 480px) {
-    .tech-stack {
-        max-width: 140px;
-    }
-    
-    .tech-icon {
-        max-width: 28px;
-        max-height: 28px;
-        padding: 4px;
-    }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    aspect-ratio: 16 / 10;
+  }
 }

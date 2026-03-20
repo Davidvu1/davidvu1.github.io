@@ -1,75 +1,80 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, { useState } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Menu, X } from 'react-feather'
 import './Navbar.css'
-import PillNav from '../PillNav/PillNav';
-import jeff_landshark from '../../assets/jeff_landshark.png'
-
 
 const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const pillNavRef = useRef(null);
-
-  // removed disappearing navbar
-  useEffect(() => {
-    const controlNavbar = () => {
-      const currentScrollY = window.scrollY;
-      const previouslyVisible = isVisible;
-      /*
-      // Show navbar when at top of page
-      if (currentScrollY < 10) {
-        setIsVisible(true);
-      }
-      // Hide navbar when scrolling down past 100px
-      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-        // Close mobile menu when navbar hides
-        if (previouslyVisible && pillNavRef.current?.closeMobileMenu) {
-          pillNavRef.current.closeMobileMenu();
-        }
-      }
-      // Show navbar when scrolling up
-      else if (currentScrollY < lastScrollY) {
-        setIsVisible(true);
-      }
-      
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', controlNavbar);
-    */
-    // Cleanup function
-    return () => {
-      window.removeEventListener('scroll', controlNavbar);
-    };
+  const scrollToSection = (id) => {
+    setMobileMenuOpen(false)
+    if (location.pathname === '/') {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      navigate('/')
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+      }, 150)
+    }
   }
-    
-  }, [lastScrollY, isVisible]);
-  
+
+  const sectionLinks = [
+    { label: 'Home', id: 'home' },
+    { label: 'Experience', id: 'experience' },
+    { label: 'Projects', id: 'projects' },
+  ]
 
   return (
-    
-<header className={`nav-header ${isVisible ? 'nav-visible' : 'nav-hidden'}`}>
-  <PillNav
-    ref={pillNavRef}
-    logo={jeff_landshark}
-    logoAlt="Logo"
-    items={[
-      { label: 'Home', href: '#home' },
-      { label: 'About', href: '#about' },
-      { label: 'Experience', href: '#experience' },
-      { label: 'Projects', href: '#projects' },
-      { label: 'Contact', href: '#contact' }
-    ]}
-    activeHref="#"
-    className="custom-nav"
-    ease="power2.easeOut"
-    baseColor="#464866"
-    pillColor="linear-gradient(129deg, #b1b4feff 43%, #FFFFFF 100%)"
-    hoveredPillTextColor="#ffffffff"
-    pillTextColor="#000000"
-  />
-</header>
+    <header className="navbar">
+      <div className="navbar-inner">
+        <button className="navbar-logo" onClick={() => scrollToSection('home')}>
+          David Vu
+        </button>
+
+        <nav className="navbar-links">
+          {sectionLinks.map(({ label, id }) => (
+            <button key={id} className="navbar-link" onClick={() => scrollToSection(id)}>
+              {label}
+            </button>
+          ))}
+          <Link to="/blog" className="navbar-link">Blog</Link>
+        </nav>
+
+        <button className="navbar-contact-btn" onClick={() => scrollToSection('contact')}>
+          Contact
+        </button>
+
+        <button
+          className="navbar-hamburger"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X size={22} color="#e2e2e6" /> : <Menu size={22} color="#e2e2e6" />}
+        </button>
+      </div>
+
+      {mobileMenuOpen && (
+        <div className="navbar-mobile-menu">
+          {sectionLinks.map(({ label, id }) => (
+            <button key={id} className="navbar-mobile-link" onClick={() => scrollToSection(id)}>
+              {label}
+            </button>
+          ))}
+          <Link
+            to="/blog"
+            className="navbar-mobile-link"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Blog
+          </Link>
+          <button className="navbar-mobile-link" onClick={() => scrollToSection('contact')}>
+            Contact
+          </button>
+        </div>
+      )}
+    </header>
   )
 }
 

@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: linear-gradient(180deg, #25274D 0%, #16213e 37%);
+  background: #111416;
   color: white;
 }
 
@@ -14,10 +14,8 @@
   font-weight: 700;
   margin-bottom: 3rem;
   text-align: center;
-  background: linear-gradient(135deg, #31f2f5, #b1b4fe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #e2e2e6;
+  letter-spacing: -1px;
 }
 
 .contact-content {
@@ -34,29 +32,27 @@
   justify-content: center;
   gap: 1.5rem;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
+  background: #353941;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   transition: all 0.3s ease;
 }
 
 .email-section:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: #31f2f5;
+  border-color: #5f85db;
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(49, 242, 245, 0.2);
+  box-shadow: 0 10px 30px rgba(95, 133, 219, 0.2);
 }
 
 .email-icon {
   width: 48px;
   height: 48px;
-  filter: brightness(0) saturate(100%) invert(100%);
+  filter: brightness(0) invert(0.5);
   transition: all 0.3s ease;
 }
 
 .email-section:hover .email-icon {
-  filter: brightness(0) saturate(100%) invert(69%) sepia(65%) saturate(6066%) hue-rotate(166deg) brightness(97%) contrast(97%);
+  filter: brightness(0) saturate(100%) invert(55%) sepia(50%) saturate(600%) hue-rotate(195deg) brightness(95%);
 }
 
 .email-info {
@@ -68,13 +64,13 @@
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #31f2f5;
+  color: #90b8f8;
 }
 
 .email-info p {
   font-size: 1.1rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  color: #c3c6d3;
   margin: 0;
   word-break: break-all;
 }
