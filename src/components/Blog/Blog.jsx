@@ -4,6 +4,16 @@ import './Blog.css'
 import Blog_Data from '../../assets/blog_data'
 
 const Blog = () => {
+  const getPreviewImage = (post) => {
+    if (post.b_gallery_image) return post.b_gallery_image
+    if (post.b_image) return post.b_image
+    if (Array.isArray(post.b_images)) return post.b_images[0] || null
+    if (post.b_images && typeof post.b_images === 'object') {
+      return Object.values(post.b_images)[0] || null
+    }
+    return null
+  }
+
   return (
     <section className="blog-section">
       <div className="blog-inner">
@@ -20,31 +30,47 @@ const Blog = () => {
 
         {/* Desktop: 3-column grid */}
         <div className="blog-grid">
-          {Blog_Data.map((post) => (
-            <Link key={post.b_slug} to={`/blog/${post.b_slug}`} className="blog-card">
-              <div className="blog-card-image-wrapper">
-                <div className="blog-card-image-placeholder" />
-              </div>
-              <div className="blog-card-body">
-                <time className="blog-card-date">{post.b_date}</time>
-                <h3 className="blog-card-title">{post.b_title}</h3>
-                <p className="blog-card-excerpt">{post.b_excerpt}</p>
-              </div>
-            </Link>
-          ))}
+          {Blog_Data.map((post) => {
+            const previewImage = getPreviewImage(post)
+
+            return (
+              <Link key={post.b_slug} to={`/blog/${post.b_slug}`} className="blog-card">
+                <div className="blog-card-image-wrapper">
+                  {previewImage ? (
+                    <img src={previewImage} alt={post.b_title} className="blog-card-image" />
+                  ) : (
+                    <div className="blog-card-image-placeholder" />
+                  )}
+                </div>
+                <div className="blog-card-body">
+                  <time className="blog-card-date">{post.b_date}</time>
+                  <h3 className="blog-card-title">{post.b_title}</h3>
+                  <p className="blog-card-excerpt">{post.b_excerpt}</p>
+                </div>
+              </Link>
+            )
+          })}
         </div>
 
         {/* Mobile: list view */}
         <div className="blog-list">
-          {Blog_Data.map((post) => (
-            <Link key={post.b_slug} to={`/blog/${post.b_slug}`} className="blog-list-item">
-              <div className="blog-list-thumbnail" />
-              <div className="blog-list-text">
-                <time className="blog-list-date">{post.b_date}</time>
-                <h3 className="blog-list-title">{post.b_title}</h3>
-              </div>
-            </Link>
-          ))}
+          {Blog_Data.map((post) => {
+            const previewImage = getPreviewImage(post)
+
+            return (
+              <Link key={post.b_slug} to={`/blog/${post.b_slug}`} className="blog-list-item">
+                {previewImage ? (
+                  <img src={previewImage} alt={post.b_title} className="blog-list-thumbnail-img" />
+                ) : (
+                  <div className="blog-list-thumbnail" />
+                )}
+                <div className="blog-list-text">
+                  <time className="blog-list-date">{post.b_date}</time>
+                  <h3 className="blog-list-title">{post.b_title}</h3>
+                </div>
+              </Link>
+            )
+          })}
           <Link to="/blog" className="blog-view-all-btn">
             View All Posts →
           </Link>

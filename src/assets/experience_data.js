@@ -9,8 +9,10 @@ const Experience_Data = [
     e_desc: "Software Developer Intern",
     e_date: "May 2026 - May 2027",
     e_place: "Markham, Canada",
-    e_back_title: "Incoming Summer 2026",
-    e_bullets: [],
+    e_back_title: "",
+    e_bullets: [
+        "Cloud Infrastructure/Distributed Systems for IBM Concert"
+    ],
     e_image: ibmLogo
 },
 
@@ -21,19 +23,19 @@ const Experience_Data = [
     e_place: "Toronto, Canada",
     e_back_title: "Digital Core Team",
     e_bullets: [
-        "Shipped features for customer support software and banking logic behind the scenes"
+        "Shipped features for back-office software and core banking"
     ],
     e_image: cibcLogo
 },
 
 {
     e_name: "Sendo Farm (FPT)",
-    e_desc: "AI Software Engineer",
+    e_desc: "AI Software Engineer Intern",
     e_date: "May 2025 - July 2025",
     e_place: "Ho Chi Minh City, Vietnam",
     e_back_title: "What I did at Sendo Farm:",
     e_bullets: [
-        "Worked on internal tools powered by AI and APIS"
+        "Shipped internal tools integrated with AI technologies"
     ],
     e_image: sendoFarmLogo
 },

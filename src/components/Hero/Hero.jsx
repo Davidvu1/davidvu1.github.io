@@ -12,12 +12,12 @@ const Hero = () => {
       {/* ── Desktop Layout ── */}
       <div className="hero-desktop">
         <div className="hero-content">
-          <span className="hero-label">I like to code. And munch.</span>
-          <h1 className="hero-heading">Hi. I'm David.</h1>
+          <span className="hero-label">(ง •̀_•́)ง _______ (︶︹︶)</span>
+          <h1 className="hero-heading">Hi!! I'm David.</h1>
           <p className="hero-bio">
-            I'm a 2nd year CS student at the University of Toronto
+            I'm a 3rd year CS student at the University of Toronto
             (also minoring in statistics and psychology). I'm
-            increasingly interested in distributed systems and on
+            interested in distributed systems and infrastructure. On
             the side I like to be involved in Canadian esports and
             try new food places.
           </p>

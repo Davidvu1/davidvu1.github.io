@@ -79,6 +79,15 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
+.post-page-content-image {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #353941;
+  margin: 8px 0 12px;
+}
+
 /* Article body */
 .post-page-content {
   display: flex;
@@ -91,6 +100,17 @@
   font-size: 16px;
   line-height: 1.8;
   color: #c3c6d3;
+}
+
+.post-page-content-link {
+  color: #90b8f8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.post-page-content-link:hover {
+  color: #5f85db;
 }
 
 .post-page-content h2 {
