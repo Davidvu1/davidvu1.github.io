@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import Navbar from './components/Navbar/Navbar'
+import ScrollProgress from './components/ScrollProgress/ScrollProgress'
 import Hero from './components/Hero/Hero'
 import Experience from './components/Experience/Experience'
 import Projects from './components/Projects/Projects'
@@ -36,6 +37,7 @@ const App = () => {
   return (
     <>
       <Navbar />
+      <ScrollProgress />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/blog" element={<BlogPage />} />
