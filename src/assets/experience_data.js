@@ -8,7 +8,7 @@ const Experience_Data = [
     e_name: "IBM",
     e_desc: "Software Developer Intern",
     e_date: "May 2026 - May 2027",
-    e_place: "Markham, Canada",
+    e_place: "Toronto, Canada",
     e_back_title: "",
     e_bullets: [
         "Cloud Infrastructure/Distributed Systems for IBM Concert"
@@ -29,7 +29,7 @@ const Experience_Data = [
 },
 
 {
-    e_name: "Sendo Farm (FPT)",
+    e_name: "FPT Sendo Farm (FPT Corporation)",
     e_desc: "AI Software Engineer Intern",
     e_date: "May 2025 - July 2025",
     e_place: "Ho Chi Minh City, Vietnam",

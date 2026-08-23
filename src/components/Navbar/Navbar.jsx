@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, X } from 'react-feather'
 import './Navbar.css'
 
 const HIDE_AFTER_PX = 80
 const DIRECTION_THRESHOLD_PX = 5
+const SUPPRESS_FALLBACK_MS = 2000
+const SETTLE_STABLE_FRAMES = 6
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
+  const suppressHideRef = useRef(false)
+  const scrollGenerationRef = useRef(0)
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -22,6 +26,15 @@ const Navbar = () => {
 
       window.requestAnimationFrame(() => {
         const currentY = window.scrollY
+
+        // A nav link triggered this scroll (e.g. clicking "Projects") — keep the
+        // navbar visible for the duration of that programmatic scroll.
+        if (suppressHideRef.current) {
+          lastY = currentY
+          ticking = false
+          return
+        }
+
         const diff = currentY - lastY
 
         if (currentY <= HIDE_AFTER_PX) {
@@ -44,13 +57,53 @@ const Navbar = () => {
   const scrollToSection = (id) => {
     setMobileMenuOpen(false)
     setHidden(false)
-    if (location.pathname === '/') {
+    suppressHideRef.current = true
+
+    // Spamming nav links fires overlapping scrolls — only the watcher for the
+    // most recent click is allowed to clear the suppression. Older watchers
+    // see their generation go stale and bail out instead of racing to end
+    // suppression early while a newer scroll is still animating.
+    const myGeneration = ++scrollGenerationRef.current
+
+    const runScroll = () => {
+      if (myGeneration !== scrollGenerationRef.current) return
+
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+
+      // Clear the suppression once scrollY has actually stopped moving, rather
+      // than trusting `scrollend` alone — it can fire early from unrelated
+      // layout shifts (e.g. images loading) while the nav-triggered scroll is
+      // still animating.
+      let stableFrames = 0
+      let prevY = window.scrollY
+      const watchForSettle = () => {
+        if (myGeneration !== scrollGenerationRef.current) return
+        if (!suppressHideRef.current) return
+
+        const currentY = window.scrollY
+        stableFrames = Math.abs(currentY - prevY) < 1 ? stableFrames + 1 : 0
+        prevY = currentY
+
+        if (stableFrames >= SETTLE_STABLE_FRAMES) {
+          suppressHideRef.current = false
+          return
+        }
+        window.requestAnimationFrame(watchForSettle)
+      }
+      window.requestAnimationFrame(watchForSettle)
+
+      // Absolute fallback in case the settle-watch never resolves.
+      window.setTimeout(() => {
+        if (myGeneration !== scrollGenerationRef.current) return
+        suppressHideRef.current = false
+      }, SUPPRESS_FALLBACK_MS)
+    }
+
+    if (location.pathname === '/') {
+      runScroll()
     } else {
       navigate('/')
-      setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-      }, 150)
+      setTimeout(runScroll, 150)
     }
   }
 
