@@ -1,20 +1,20 @@
-import p1_img from "../assets/tripquick.png"
-import p2_img from "../assets/foodit.png"
-import typescript_icon from './TypeScript.svg'
-import python_icon from './Python.svg'
-import javascript_icon from './JavaScript.svg'
-import react_icon from './react.svg'
-import swift_icon from './Swift.svg'
-import spring_icon from './Spring.svg'
-import django_icon from './Django.svg'
-import css_icon from './CSS3.svg'
-import html_icon from './HTML5.svg'
-import java_icon from './Java.svg'
-import postgres_icon from './PostgresSQL.svg'
-import wip_img from './WIP.png'
-import justastartup_img from './Justastartup.png'
-import nodejs_icon from './Node.js.svg'
-import tailwind_icon from './Tailwind CSS.svg'
+import p1_img from "../assets/projects/tripquick.png"
+import p2_img from "../assets/projects/foodit.png"
+import typescript_icon from './projects/tech-icons/TypeScript.svg'
+import python_icon from './projects/tech-icons/Python.svg'
+import javascript_icon from './projects/tech-icons/JavaScript.svg'
+import react_icon from './projects/tech-icons/react.svg'
+import swift_icon from './projects/tech-icons/Swift.svg'
+import spring_icon from './projects/tech-icons/Spring.svg'
+import django_icon from './projects/tech-icons/Django.svg'
+import css_icon from './projects/tech-icons/CSS3.svg'
+import html_icon from './projects/tech-icons/HTML5.svg'
+import java_icon from './projects/tech-icons/Java.svg'
+import postgres_icon from './projects/tech-icons/PostgresSQL.svg'
+import wip_img from './projects/WIP.png'
+import justastartup_img from './projects/Justastartup.png'
+import nodejs_icon from './projects/tech-icons/Node.js.svg'
+import tailwind_icon from './projects/tech-icons/Tailwind CSS.svg'
 
 
 const Project_Data = [

@@ -1,10 +1,10 @@
 import React from 'react'
 import './Hero.css'
-import profile_img from '../../assets/profile_img.png'
-import me_img from '../../assets/me_in_dist.png'
-import github from '../../assets/Orion_github.svg'
-import linkedin from '../../assets/linkedin.svg'
-import email from '../../assets/envelope.svg'
+import profile_img from '../../assets/profile/profile_img.png'
+import me_img from '../../assets/profile/me_in_dist.png'
+import github from '../../assets/social-icons/Orion_github.svg'
+import linkedin from '../../assets/social-icons/linkedin.svg'
+import email from '../../assets/social-icons/envelope.svg'
 
 const Hero = () => {
   return (

@@ -10,6 +10,13 @@ const ScrollProgress = () => {
   const location = useLocation()
 
   useEffect(() => {
+    if (fillRef.current) {
+      fillRef.current.style.transform = 'scaleY(0)'
+    }
+    if (spriteRef.current) {
+      spriteRef.current.style.top = '0%'
+    }
+
     const tick = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop
       const docHeight = document.documentElement.scrollHeight - window.innerHeight

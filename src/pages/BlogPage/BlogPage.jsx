@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Blog_Data from '../../assets/blog_data'
 import './BlogPage.css'
 
 const BlogPage = () => {
+  const [sortOrder, setSortOrder] = useState('newest')
+
+  const sortedPosts = useMemo(() => {
+    const posts = [...Blog_Data]
+    posts.sort((a, b) => {
+      const diff = new Date(a.b_date) - new Date(b.b_date)
+      return sortOrder === 'newest' ? -diff : diff
+    })
+    return posts
+  }, [sortOrder])
+
   return (
     <div className="blog-page">
       <div className="blog-page-inner">
@@ -15,8 +26,28 @@ const BlogPage = () => {
           </p>
         </div>
 
+        <div className="blog-page-sort">
+          <span className="blog-page-sort-label">Sort by</span>
+          <div className="blog-page-sort-options">
+            <button
+              type="button"
+              className={`blog-page-sort-btn ${sortOrder === 'newest' ? 'blog-page-sort-btn--active' : ''}`}
+              onClick={() => setSortOrder('newest')}
+            >
+              Newest
+            </button>
+            <button
+              type="button"
+              className={`blog-page-sort-btn ${sortOrder === 'oldest' ? 'blog-page-sort-btn--active' : ''}`}
+              onClick={() => setSortOrder('oldest')}
+            >
+              Oldest
+            </button>
+          </div>
+        </div>
+
         <div className="blog-page-list">
-          {Blog_Data.map((post) => (
+          {sortedPosts.map((post) => (
             <Link
               key={post.b_slug}
               to={`/blog/${post.b_slug}`}

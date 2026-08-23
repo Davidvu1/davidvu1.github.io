@@ -1,6 +1,6 @@
-import sendoFarmLogo from "../assets/sendo_farm_logo.png"
-import cibcLogo from "../assets/cibcLogo.png"
-import ibmLogo from "../assets/ibmlogo.png"
+import sendoFarmLogo from "../assets/timeline/sendo_farm_logo.png"
+import cibcLogo from "../assets/timeline/cibcLogo.png"
+import ibmLogo from "../assets/timeline/ibmlogo.png"
 
 const Experience_Data = [
 

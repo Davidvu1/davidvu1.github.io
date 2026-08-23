@@ -1,7 +1,7 @@
 
 import React from 'react'
 import './Contact.css'
-import email from '../../assets/envelope.svg'
+import email from '../../assets/social-icons/envelope.svg'
 
 const Contact = () => {
   return (

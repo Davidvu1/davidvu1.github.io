@@ -1,7 +1,12 @@
-import overwatchlogo from './overwatchlogo.png'
-import canadapic from './teamcanadaowwc.png'
-import ccl2025 from './CCL2025.png'
-import top29s3 from './top29s3.png'
+// overwatch blog
+import overwatchlogo from './blog/my-involvement-in-esports-and-what-i-think/overwatchlogo.png'
+import canadapic from './blog/my-involvement-in-esports-and-what-i-think/teamcanadaowwc.png'
+import ccl2025 from './blog/my-involvement-in-esports-and-what-i-think/CCL2025.png'
+import top29s3 from './blog/my-involvement-in-esports-and-what-i-think/top29s3.png'
+// nats blog
+import natslogo from './blog/what-the-heck-is-nats/natslogo.png'
+import natslogobig from './blog/what-the-heck-is-nats/natslogobig.png'
+
 
 const Blog_Data = [
   {

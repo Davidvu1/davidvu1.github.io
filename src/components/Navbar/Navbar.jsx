@@ -1,15 +1,49 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, X } from 'react-feather'
 import './Navbar.css'
 
+const HIDE_AFTER_PX = 80
+const DIRECTION_THRESHOLD_PX = 5
+
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
 
+  useEffect(() => {
+    let lastY = window.scrollY
+    let ticking = false
+
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+
+      window.requestAnimationFrame(() => {
+        const currentY = window.scrollY
+        const diff = currentY - lastY
+
+        if (currentY <= HIDE_AFTER_PX) {
+          setHidden(false)
+        } else if (diff > DIRECTION_THRESHOLD_PX) {
+          setHidden(true)
+        } else if (diff < -DIRECTION_THRESHOLD_PX) {
+          setHidden(false)
+        }
+
+        lastY = currentY
+        ticking = false
+      })
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   const scrollToSection = (id) => {
     setMobileMenuOpen(false)
+    setHidden(false)
     if (location.pathname === '/') {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     } else {
@@ -27,7 +61,7 @@ const Navbar = () => {
   ]
 
   return (
-    <header className="navbar">
+    <header className={`navbar ${hidden && !mobileMenuOpen ? 'navbar--hidden' : ''}`}>
       <div className="navbar-inner">
         <button className="navbar-logo" onClick={() => scrollToSection('home')}>
           David Vu

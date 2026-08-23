@@ -3,13 +3,13 @@ import './About.css'
 import Carousel from "../Carousel/Carousel"
 import ImageCarousel from "../ImageCarousel/ImageCarousel"
 import Masonry from '../Masonry/Masonry'
-import profile_img from '../../assets/me_in_dist.png'
+import profile_img from '../../assets/profile/me_in_dist.png'
 import { Tweet } from 'react-tweet';
-import tournaments from '../../assets/sometournaments.png'
-import uoft_mr_ban from '../../assets/uoftavengersbanner.png'
-import uoft_ow_ban from '../../assets/uoftoverwatchbanner.png'
-import ow_din from '../../assets/owteamdinner2024.png'
-import mr_lan from '../../assets/mrlan2025.png'
+import tournaments from '../../assets/about/sometournaments.png'
+import uoft_mr_ban from '../../assets/about/uoftavengersbanner.png'
+import uoft_ow_ban from '../../assets/about/uoftoverwatchbanner.png'
+import ow_din from '../../assets/about/owteamdinner2024.png'
+import mr_lan from '../../assets/about/mrlan2025.png'
 
 const esportsCarouselItems = [
     {
