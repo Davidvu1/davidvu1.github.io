@@ -64,25 +64,79 @@
   min-height: 144px;
 }
 
-/* Content block */
+/* Content block — message-bubble style */
 .timeline-content {
+  position: relative;
   width: calc(50% - 64px);
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 24px 28px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.35);
 }
 
-/* Left entry: content on left, right-aligned */
+/* Left entry: gray bubble, tail points right toward the timeline */
 .timeline-entry--left .timeline-content {
   text-align: right;
-  padding-right: 64px;
+  background: #353941;
 }
 
-/* Right entry: content on right, left-aligned */
+.timeline-entry--left .timeline-content::after {
+  content: '';
+  position: absolute;
+  right: -14px;
+  top: 36px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 0 10px 14px;
+  border-color: transparent transparent transparent #353941;
+}
+
+/* Right entry: accent-blue bubble, tail points left toward the timeline */
 .timeline-entry--right .timeline-content {
   margin-left: calc(50% + 64px);
-  padding-left: 0;
   text-align: left;
+  background: #5f85db;
+}
+
+.timeline-entry--right .timeline-content::after {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: 36px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 14px 10px 0;
+  border-color: transparent #5f85db transparent transparent;
+}
+
+/* Text contrast on the blue bubble */
+.timeline-entry--right .timeline-date {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.timeline-entry--right .timeline-role {
+  color: #ffffff;
+}
+
+.timeline-entry--right .timeline-company {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.timeline-entry--right .timeline-location {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.timeline-entry--right .timeline-bullets li {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.timeline-entry--right .timeline-bullets li::marker {
+  color: #ffffff;
 }
 
 .timeline-date {
@@ -230,16 +284,32 @@
     min-height: unset;
   }
 
-  /* Both left & right entries: full-width card */
+  /* Both left & right entries: full-width bubble */
   .timeline-entry--left .timeline-content,
   .timeline-entry--right .timeline-content {
-    width: 100%;
-    margin-left: 0;
-    padding: 24px;
+    width: calc(100% - 16px);
+    margin-left: 16px;
+    padding: 20px 24px;
     text-align: left;
-    background: #1a1c1f;
-    border: 1px solid rgba(67, 70, 81, 0.15);
-    border-radius: 12px;
+    border-radius: 18px;
+  }
+
+  /* Tail always points left toward the vertical line/marker */
+  .timeline-entry--left .timeline-content::after,
+  .timeline-entry--right .timeline-content::after {
+    left: -14px;
+    right: auto;
+    bottom: auto;
+    top: 24px;
+    border-width: 10px 14px 10px 0;
+  }
+
+  .timeline-entry--left .timeline-content::after {
+    border-color: transparent #353941 transparent transparent;
+  }
+
+  .timeline-entry--right .timeline-content::after {
+    border-color: transparent #5f85db transparent transparent;
   }
 
   .timeline-marker {
